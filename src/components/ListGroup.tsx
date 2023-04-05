@@ -1,15 +1,22 @@
 import { Fragment } from "react";
 
+const cities = [
+  { name: "New York" },
+  { name: "Paris" },
+  { name: "London" },
+  { name: "Tokyo" },
+];
+
 const ListGroup = () => {
   return (
     // Question -- when should you use fragment, and when should div / section (other element be used)
     <>
       <ul className="list-group">
-        <li className="list-group-item">Cras justo odio</li>
-        <li className="list-group-item">Dapibus ac facilisis in</li>
-        <li className="list-group-item">Morbi leo risus</li>
-        <li className="list-group-item">Porta ac consectetur ac</li>
-        <li className="list-group-item">Vestibulum at eros</li>
+        {cities.map((city) => (
+          <li className="list-group-item" key={city.name}>
+            {city.name}
+          </li>
+        ))}
       </ul>
     </>
   );
