@@ -11,9 +11,17 @@ const App = () => {
 
   // cities = [];
 
+  const handleSelectCity = (city: string) => {
+    console.log("pass fn via props", city);
+  };
+
   return (
     <div>
-      <ListGroup items={cities} heading="Cities" />
+      <ListGroup
+        items={cities}
+        heading="Cities"
+        handleSelectItem={handleSelectCity}
+      />
       {/* <ListGroup /> */}
     </div>
   );

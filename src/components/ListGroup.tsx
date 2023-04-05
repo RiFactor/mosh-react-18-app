@@ -5,13 +5,14 @@ import classNames from "classnames";
 interface IItemsProps {
   items: IItemProps[];
   heading: string;
+  handleSelectItem: (item: string) => void;
 }
 
 interface IItemProps {
   name: string;
 }
 
-const ListGroup = ({ items, heading }: IItemsProps) => {
+const ListGroup = ({ items, heading, handleSelectItem }: IItemsProps) => {
   const [selectedCity, setSelectedCity] = useState(-1); // NTS: copies of components will have their own state, if we import listgroup twice into the app, the states will be independent
 
   const getCities = items.length === 0 && <p>No {heading} Found Here.</p>; // NTS: can be a function if taking a param, better to be a var if not
@@ -43,6 +44,7 @@ const ListGroup = ({ items, heading }: IItemsProps) => {
             onClick={(event) => {
               handleCityClicked(event, index, item.name);
               handleSelectedCity(index);
+              handleSelectItem(item.name);
             }}
           >
             {item.name}
