@@ -29,6 +29,7 @@ const ListGroup = ({ items, heading, onSelectItem }: IItemsProps) => {
 
   return (
     <>
+      {/* NTS: No layers w/ react, nesting w/ div or alternate */}
       <h1>{heading}</h1>
       {getItems}
       {items.length === 0 && <p>No {heading} Found.</p>}
