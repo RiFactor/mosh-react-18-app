@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import { MouseEvent } from "react";
+import classNames from "classnames";
 
 const ListGroup = () => {
   let cities = [
@@ -11,7 +12,7 @@ const ListGroup = () => {
 
   // cities = [];
 
-  const [selectedCity, setSelectedCity] = useState(-1);
+  const [selectedCity, setSelectedCity] = useState(-1); // copies of components will have their own state, if we import listgroup twice into the app, the states will be independent
 
   const getCities = () => {
     // can be a function if taking a param, better to be a var if not
@@ -39,9 +40,7 @@ const ListGroup = () => {
         {cities?.map((city, index) => (
           <li
             className={
-              selectedCity === index
-                ? "list-group-item active"
-                : "list-group-item"
+              classNames("list-group-item", selectedCity === index && "active") // used classNames import to concatenate :)
             }
             key={city.name}
             onClick={() => {
