@@ -2,17 +2,17 @@ import { Fragment, useState } from "react";
 import { MouseEvent } from "react";
 import classNames from "classnames";
 
-interface ItemsProps {
+interface IItemsProps {
   // items: ItemsProps[];
-  items: string[];
+  items: ItemProps[];
   heading: string;
 }
 
-// interface ItemProps {
-//   name: string;
-// } // QUESTION -- want to pass an array of objects
+interface ItemProps {
+  name: string;
+}
 
-const ListGroup = ({ items, heading }: ItemsProps) => {
+const ListGroup = ({ items, heading }: IItemsProps) => {
   // cities = [];
 
   const [selectedCity, setSelectedCity] = useState(-1); // copies of components will have their own state, if we import listgroup twice into the app, the states will be independent
@@ -34,7 +34,6 @@ const ListGroup = ({ items, heading }: ItemsProps) => {
 
   return (
     <>
-      {/* // QUESTION -- when should you use fragment as above, and when should div / section (other element be used) */}
       <h1>{heading}</h1>
       {getCities()}
       {items.length === 0 && <p>No {heading} Found.</p>}
@@ -45,13 +44,12 @@ const ListGroup = ({ items, heading }: ItemsProps) => {
             className={
               classNames("list-group-item", selectedCity === index && "active") // used classNames import to concatenate :)
             }
-            key={item}
+            key={item.name}
             onClick={() => {
-              // setSelectedCity(index);
               handleSelectedCity(index);
             }}
           >
-            {item}
+            {item.name}
           </li>
         ))}
       </ul>
