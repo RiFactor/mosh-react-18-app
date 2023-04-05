@@ -5,14 +5,14 @@ import classNames from "classnames";
 interface IItemsProps {
   items: IItemProps[];
   heading: string;
-  handleSelectItem: (item: string) => void;
+  onSelectItem: (item: string) => void;
 }
 
 interface IItemProps {
   name: string; //  QUESTION -- is it preferred to define this above / below & what was the alternate method
 }
 
-const ListGroup = ({ items, heading, handleSelectItem }: IItemsProps) => {
+const ListGroup = ({ items, heading, onSelectItem }: IItemsProps) => {
   const [selectedItem, setSelectedItem] = useState(-1); // NTS: copies of components will have their own state, if we import listgroup twice into the app, the states will be independent
 
   const getItems = items.length === 0 && <p>No {heading} Found Here.</p>; // NTS: can be a function if taking a param, better to be a var if not
@@ -44,7 +44,7 @@ const ListGroup = ({ items, heading, handleSelectItem }: IItemsProps) => {
             onClick={(event) => {
               handleItemClicked(event, index, item.name);
               handleSelectedItem(index);
-              handleSelectItem(item.name);
+              onSelectItem(item.name);
             }}
           >
             {item.name}

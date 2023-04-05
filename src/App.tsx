@@ -20,7 +20,7 @@ const App = () => {
       <ListGroup
         items={cities}
         heading="Cities"
-        handleSelectItem={handleSelectCity}
+        onSelectItem={handleSelectCity}
       />
       {/* <ListGroup /> */}
     </div>
