@@ -9,28 +9,28 @@ interface IItemsProps {
 }
 
 interface IItemProps {
-  name: string;
+  name: string; //  QUESTION -- is it preferred to define this above / below & what was the alternate method
 }
 
 const ListGroup = ({ items, heading, handleSelectItem }: IItemsProps) => {
-  const [selectedCity, setSelectedCity] = useState(-1); // NTS: copies of components will have their own state, if we import listgroup twice into the app, the states will be independent
+  const [selectedItem, setSelectedItem] = useState(-1); // NTS: copies of components will have their own state, if we import listgroup twice into the app, the states will be independent
 
-  const getCities = items.length === 0 && <p>No {heading} Found Here.</p>; // NTS: can be a function if taking a param, better to be a var if not
+  const getItems = items.length === 0 && <p>No {heading} Found Here.</p>; // NTS: can be a function if taking a param, better to be a var if not
 
-  const handleCityClicked = (
+  const handleItemClicked = (
     event: MouseEvent,
     index: number,
     name: string // NTS: param order matters!
   ) => console.log("test", index + 1, name, event);
 
-  const handleSelectedCity = (index: number) => {
-    selectedCity === index ? setSelectedCity(-1) : setSelectedCity(index);
+  const handleSelectedItem = (index: number) => {
+    selectedItem === index ? setSelectedItem(-1) : setSelectedItem(index);
   };
 
   return (
     <>
       <h1>{heading}</h1>
-      {getCities}
+      {getItems}
       {items.length === 0 && <p>No {heading} Found.</p>}
 
       <ul className="list-group">
@@ -38,12 +38,12 @@ const ListGroup = ({ items, heading, handleSelectItem }: IItemsProps) => {
           <li
             className={classNames(
               "list-group-item",
-              selectedCity === index && "active"
+              selectedItem === index && "active"
             )}
             key={item.name}
             onClick={(event) => {
-              handleCityClicked(event, index, item.name);
-              handleSelectedCity(index);
+              handleItemClicked(event, index, item.name);
+              handleSelectedItem(index);
               handleSelectItem(item.name);
             }}
           >
