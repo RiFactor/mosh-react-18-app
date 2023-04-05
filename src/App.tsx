@@ -1,5 +1,6 @@
 // import Message from "./Message";
 import ListGroup from "./components/ListGroup";
+import Alert from "./components/Alert";
 
 const App = () => {
   let cities = [
@@ -23,6 +24,10 @@ const App = () => {
         onSelectItem={handleSelectCity}
       />
       {/* <ListGroup /> */}
+
+      <Alert>
+        Hello <span>World</span>
+      </Alert>
     </div>
   );
 };
