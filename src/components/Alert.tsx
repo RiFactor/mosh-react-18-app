@@ -5,7 +5,7 @@ interface IProps {
 }
 
 const Alert = ({ children }: IProps) => {
-  return <div>{children}</div>;
+  return <div className="alert alert-primary">{children}</div>;
 };
 
 export default Alert;
