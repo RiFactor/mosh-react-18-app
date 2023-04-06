@@ -8,6 +8,10 @@ interface IItemProps {
   // QUESTION -- what was the alternate method?
 }
 
+// const styledObject = {
+//   return ({backgroundColor: "purple", padding: "15px"});
+// }
+
 interface IItemsProps {
   items: IItemProps[];
   heading: string;
@@ -36,7 +40,10 @@ const ListGroup = ({ items, heading, onSelectItem }: IItemsProps) => {
       {getItems}
       {items.length === 0 && <p>No {heading} Found.</p>}
       {/* <ul className={styles.listGroup}> */}
-      <ul className={[styles.listGroup, styles.container].join(" ")}>
+      <ul
+        className={[styles.listGroup, styles.container].join(" ")}
+        style={{ backgroundColor: "purple", padding: "15px" }} // QUESTION -- how do you make this an object
+      >
         {items?.map((item, index) => (
           <li
             className={classNames(

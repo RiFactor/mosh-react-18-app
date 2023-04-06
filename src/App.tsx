@@ -6,7 +6,7 @@ import { useState } from "react";
 import "./App.css";
 
 const App = () => {
-  const [showAlert, setShowAlert] = useState(true);
+  const [showAlert, setShowAlert] = useState(true); // QUESTION -- is this destructuring props from useState?
 
   let cities = [
     { name: "New York" },
