@@ -7,25 +7,12 @@ interface IProps {
 }
 
 const Alert = ({ children }: IProps) => {
-  const [hideAlert, setHideAlert] = useState(false);
-
-  // const hide = false;
-  const handleClose = () => {
-    console.log("handle close alert");
-    setHideAlert(true);
-    console.log(hideAlert);
-  };
-
   return (
     <div
       role="alert"
-      className={classNames(
-        "alert alert-warning alert-dismissible fade show",
-        hideAlert && "hide"
-      )}
+      className={classNames("alert alert-warning alert-dismissible fade show")}
     >
       {children}
-      {/* <Button onClick={handleClose}>X</Button> */}
     </div>
   );
 };
