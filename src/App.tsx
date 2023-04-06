@@ -3,6 +3,7 @@ import ListGroup from "./components/ListGroup";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
 import { MouseEvent } from "react";
+import DismissibleAlert from "./components/DismissibleAlert";
 
 const App = () => {
   let cities = [
@@ -36,7 +37,8 @@ const App = () => {
       {/* <ListGroup /> */}
 
       <Alert>
-        Hello <span>World</span>
+        Here is a <span>Message</span> <br />
+        <strong>for you</strong>
       </Alert>
       {/* <Button
         onClick={handleWarningButtonClick}
@@ -48,6 +50,7 @@ const App = () => {
       <Button buttonType="danger" onClick={handlePrimaryButtonClick}>
         Click Here
       </Button>
+      <DismissibleAlert />
     </div>
   );
 };

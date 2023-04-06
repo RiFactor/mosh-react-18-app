@@ -1,6 +1,7 @@
 // rafce NTS: shortcut
 
 import { MouseEvent } from "react";
+import classNames from "classnames";
 
 interface IProps {
   buttonType?:
@@ -14,6 +15,7 @@ interface IProps {
     | "dark"
     | "link"; // NTS: to restrict input to valid options only
   children?: string; // NTS: to make it optional
+  //   hide: boolean;
   onClick: (event: MouseEvent) => void;
 }
 
@@ -21,11 +23,15 @@ const Button = ({
   buttonType = "primary", // NTS: to set default value if not provided
   children = "Click Me",
   onClick,
-}: IProps) => {
+}: //   hide = true,
+IProps) => {
   return (
     <button
       onClick={(event: MouseEvent) => onClick(event)}
-      className={`m-2 btn btn-${buttonType}`}
+      className={classNames(
+        `m-2 btn btn-${buttonType}`
+        //   , hide && "hide"
+      )}
     >
       {children}
     </button>
