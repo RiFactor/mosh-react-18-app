@@ -5,7 +5,7 @@ import { MouseEvent } from "react";
 import { useState } from "react";
 
 const App = () => {
-  const [showAlert, setShowAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState(true);
 
   let cities = [
     { name: "New York" },
@@ -22,7 +22,12 @@ const App = () => {
 
   const handlePrimaryButtonClick = (event: MouseEvent) => {
     console.log(event, "primary button clicked");
-    setShowAlert(true);
+    // setShowAlert(true); // NTS: could create a toggle function
+  };
+
+  const handleShowAlert = () => {
+    setShowAlert(!showAlert);
+    // showAlert ? setShowAlert(false) : setShowAlert(true);
   };
 
   return (
@@ -33,21 +38,18 @@ const App = () => {
         onSelectItem={handleSelectCity}
       />
       {showAlert && (
-        <Alert>
+        <Alert onClose={handleShowAlert}>
           <strong>Oops!</strong> Close to dismiss this
-          <button
-            onClick={() => setShowAlert(false)}
-            type="button"
-            className="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
         </Alert>
       )}
 
-      <Button buttonType="danger" onClick={handlePrimaryButtonClick}>
+      <Button
+        buttonType="danger"
+        onClick={(event: MouseEvent) => {
+          handleShowAlert();
+          handlePrimaryButtonClick(event);
+        }}
+      >
         Click Here
       </Button>
     </div>
