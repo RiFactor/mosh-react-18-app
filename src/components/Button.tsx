@@ -27,33 +27,14 @@ const Button = ({
   onClick,
 }: //   hide = true,
 IProps) => {
-  const [showAlert, setShowAlert] = useState(false);
-
   return (
     <>
-      {showAlert && (
-        <Alert>
-          <strong>Holy guacamole!</strong> You should check in on some of those
-          fields below.
-          <button
-            onClick={() => setShowAlert(false)}
-            type="button"
-            className="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </Alert>
-      )}
-
       <button
         aria-label="Close"
         data-dismiss="alert"
         type="button"
         onClick={(event: MouseEvent) => {
           onClick(event);
-          setShowAlert(true);
         }}
         className={classNames(
           `close m-2 btn btn-${buttonType}`
