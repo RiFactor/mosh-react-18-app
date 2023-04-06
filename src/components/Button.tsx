@@ -18,7 +18,7 @@ interface IProps {
 }
 
 const Button = ({
-  buttonType = "primary", // NTS: to set default value if not provided
+  buttonType = "primary", // NTS: to set to default value if not provided
   children = "Click Me",
   onClick,
 }: IProps) => {
