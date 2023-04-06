@@ -36,10 +36,6 @@ const App = () => {
       />
       {/* <ListGroup /> */}
 
-      <Alert>
-        Here is a <span>Message</span> <br />
-        <strong>for you</strong>
-      </Alert>
       {/* <Button
         onClick={handleWarningButtonClick}
         buttonType="warning"
@@ -50,7 +46,7 @@ const App = () => {
       <Button buttonType="danger" onClick={handlePrimaryButtonClick}>
         Click Here
       </Button>
-      <DismissibleAlert />
+      {/* <DismissibleAlert /> */}
     </div>
   );
 };

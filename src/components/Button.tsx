@@ -2,6 +2,8 @@
 
 import { MouseEvent } from "react";
 import classNames from "classnames";
+import Alert from "./Alert";
+import { useState } from "react";
 
 interface IProps {
   buttonType?:
@@ -25,16 +27,43 @@ const Button = ({
   onClick,
 }: //   hide = true,
 IProps) => {
+  const [showAlert, setShowAlert] = useState(false);
+
   return (
-    <button
-      onClick={(event: MouseEvent) => onClick(event)}
-      className={classNames(
-        `m-2 btn btn-${buttonType}`
-        //   , hide && "hide"
+    <>
+      {showAlert && (
+        <Alert>
+          <strong>Holy guacamole!</strong> You should check in on some of those
+          fields below.
+          <button
+            onClick={() => setShowAlert(false)}
+            type="button"
+            className="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </Alert>
       )}
-    >
-      {children}
-    </button>
+
+      <button
+        aria-label="Close"
+        data-dismiss="alert"
+        type="button"
+        onClick={(event: MouseEvent) => {
+          onClick(event);
+          setShowAlert(true);
+        }}
+        className={classNames(
+          `close m-2 btn btn-${buttonType}`
+          //   , hide && "hide"
+        )}
+      >
+        <span aria-hidden="true">&times;</span>
+        {children}
+      </button>
+    </>
   );
 };
 

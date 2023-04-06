@@ -17,9 +17,15 @@ const Alert = ({ children }: IProps) => {
   };
 
   return (
-    <div className={classNames("alert alert-primary", hideAlert && "hide")}>
+    <div
+      role="alert"
+      className={classNames(
+        "alert alert-warning alert-dismissible fade show",
+        hideAlert && "hide"
+      )}
+    >
       {children}
-      <Button onClick={handleClose}>X</Button>
+      {/* <Button onClick={handleClose}>X</Button> */}
     </div>
   );
 };
