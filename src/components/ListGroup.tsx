@@ -2,14 +2,15 @@ import { Fragment, useState } from "react";
 import { MouseEvent } from "react";
 import classNames from "classnames";
 
+interface IItemProps {
+  name: string; //  NTS preferred to define this above for readability;
+  // QUESTION -- what was the alternate method?
+}
+
 interface IItemsProps {
   items: IItemProps[];
   heading: string;
   onSelectItem: (item: string) => void;
-}
-
-interface IItemProps {
-  name: string; //  QUESTION -- is it preferred to define this above / below & what was the alternate method
 }
 
 const ListGroup = ({ items, heading, onSelectItem }: IItemsProps) => {

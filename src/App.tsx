@@ -2,6 +2,7 @@
 import ListGroup from "./components/ListGroup";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
+import { MouseEvent } from "react";
 
 const App = () => {
   let cities = [
@@ -17,12 +18,12 @@ const App = () => {
     console.log("pass fn via props", city);
   };
 
-  const handleWarningButtonClick = () => {
-    console.log("warning button clicked"); // don't need 'return' for console log?
-  };
+  // const handleWarningButtonClick = () => {
+  //   console.log("warning button clicked"); // QUESTION -- don't need 'return' for console log?
+  // };
 
-  const handlePrimaryButtonClick = () => {
-    console.log("primary button clicked");
+  const handlePrimaryButtonClick = (event: MouseEvent) => {
+    console.log(event, "primary button clicked");
   };
 
   return (
@@ -37,14 +38,14 @@ const App = () => {
       <Alert>
         Hello <span>World</span>
       </Alert>
-      <Button
+      {/* <Button
         onClick={handleWarningButtonClick}
         buttonType="warning"
         // buttonType="string"
       >
         Click Me
-      </Button>
-      <Button onClick={handlePrimaryButtonClick} buttonType="primary">
+      </Button> */}
+      <Button buttonType="danger" onClick={handlePrimaryButtonClick}>
         Click Here
       </Button>
     </div>

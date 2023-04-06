@@ -1,15 +1,32 @@
-// rafce shortcut
+// rafce NTS: shortcut
+
+import { MouseEvent } from "react";
 
 interface IProps {
-  //   buttonType: "string"; // will be restricted to literally passing "string" as a value
-  buttonType: string;
-  children: string;
-  onClick: () => void;
+  buttonType?:
+    | "primary"
+    | "secondary"
+    | "success"
+    | "danger"
+    | "warning"
+    | "info"
+    | "light"
+    | "dark"
+    | "link"; // NTS: to restrict input to valid options only
+  children?: string; // NTS: to make it optional
+  onClick: (event: MouseEvent) => void;
 }
 
-const Button = ({ buttonType, children, onClick }: IProps) => {
+const Button = ({
+  buttonType = "primary", // NTS: to set default value if not provided
+  children = "Click Me",
+  onClick,
+}: IProps) => {
   return (
-    <button onClick={onClick} className={`m-2 btn btn-${buttonType}`}>
+    <button
+      onClick={(event: MouseEvent) => onClick(event)}
+      className={`m-2 btn btn-${buttonType}`}
+    >
       {children}
     </button>
   );
