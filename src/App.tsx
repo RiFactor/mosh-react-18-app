@@ -34,8 +34,7 @@ const App = () => {
       />
       {showAlert && (
         <Alert>
-          <strong>Holy guacamole!</strong> You should check in on some of those
-          fields below.
+          <strong>Oops!</strong> Close to dismiss this
           <button
             onClick={() => setShowAlert(false)}
             type="button"

@@ -1,5 +1,4 @@
-import { ReactNode, useState } from "react";
-import Button from "./Button";
+import { ReactNode } from "react";
 import classNames from "classnames";
 
 interface IProps {
