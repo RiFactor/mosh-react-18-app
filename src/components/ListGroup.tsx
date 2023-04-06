@@ -2,6 +2,8 @@ import { Fragment, useState } from "react";
 import { MouseEvent } from "react";
 import classNames from "classnames";
 import styles from "../styles/ListGroup.module.css";
+import { FcLinux } from "react-icons/fc";
+import { ImTongue } from "react-icons/im";
 
 interface IItemProps {
   name: string; //  NTS preferred to define this above for readability;
@@ -62,6 +64,8 @@ const ListGroup = ({ items, heading, onSelectItem }: IItemsProps) => {
         ))}
       </ul>
       <br />
+      <FcLinux size={60} />
+      <ImTongue color="blue" size={60} />
       <p> test</p>
     </>
   );
