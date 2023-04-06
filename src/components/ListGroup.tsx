@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { MouseEvent } from "react";
 import classNames from "classnames";
+import styles from "../styles/ListGroup.module.css";
 
 interface IItemProps {
   name: string; //  NTS preferred to define this above for readability;
@@ -34,8 +35,8 @@ const ListGroup = ({ items, heading, onSelectItem }: IItemsProps) => {
       <h1>{heading}</h1>
       {getItems}
       {items.length === 0 && <p>No {heading} Found.</p>}
-
-      <ul className="list-group">
+      {/* <ul className={styles.listGroup}> */}
+      <ul className={[styles.listGroup, styles.container].join(" ")}>
         {items?.map((item, index) => (
           <li
             className={classNames(

@@ -3,6 +3,7 @@ import Alert from "./components/Alert";
 import Button from "./components/Button";
 import { MouseEvent } from "react";
 import { useState } from "react";
+import "./App.css";
 
 const App = () => {
   const [showAlert, setShowAlert] = useState(true);

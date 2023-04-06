@@ -1,0 +1,9 @@
+.listGroup {
+padding: 0;
+list-style: none;
+background-color: darkblue;
+}
+
+.container {
+    padding: 2rem;
+}
