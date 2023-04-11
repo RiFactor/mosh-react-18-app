@@ -1,18 +1,25 @@
 import { useState } from "react";
-import { AiOutlineHeart } from "react-icons/ai";
-import { AiFillHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 interface IProps {
   onClick: () => boolean;
 }
 
 const Like = ({ onClick }: IProps) => {
-  const [isLiked, setisLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const handleClick = () => {
+    setIsLiked(!isLiked);
+  };
 
   return (
-    <div onClick={onClick}>
-      Click me
-      {isLiked ? <AiFillHeart /> : <AiOutlineHeart />};
+    <div
+      onClick={() => {
+        handleClick();
+        onClick();
+      }}
+    >
+      {isLiked ? <AiFillHeart /> : <AiOutlineHeart />}
     </div>
   );
 };
