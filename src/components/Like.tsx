@@ -19,7 +19,12 @@ const Like = ({ onClick }: IProps) => {
         onClick();
       }}
     >
-      {isLiked ? <AiFillHeart /> : <AiOutlineHeart />}
+      {isLiked ? (
+        <AiFillHeart color="#ff6b81" />
+      ) : (
+        <AiOutlineHeart color="#ff6b81" />
+      )}
+      {/* QUESTION -- is there a way to use the colour once (can make the colour a defined var, but also want to just set it once) */}
     </div>
   );
 };
