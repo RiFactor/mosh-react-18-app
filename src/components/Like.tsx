@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 interface IProps {
-  onClick: () => boolean;
+  onClick: () => void;
 }
 
 const Like = ({ onClick }: IProps) => {
