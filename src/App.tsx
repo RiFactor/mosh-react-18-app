@@ -1,8 +1,9 @@
 import ListGroup from "./components/ListGroup";
-import Alert from "./components/Alert";
+import Alert from "./components/Alert"; // QUESTION -- want to use absolute referencencing
 import Button from "./components/Button";
 import { MouseEvent } from "react";
 import { useState } from "react";
+import Like from "./components/Like";
 import "./App.css";
 
 const App = () => {
@@ -31,6 +32,11 @@ const App = () => {
     // showAlert ? setShowAlert(false) : setShowAlert(true);
   };
 
+  const handleLike = () => {
+    console.log("clicked");
+    return true;
+  };
+
   return (
     <div>
       <ListGroup
@@ -45,7 +51,7 @@ const App = () => {
       )}
 
       <Button
-        buttonType="danger"
+        buttonType="primary"
         onClick={(event: MouseEvent) => {
           handleShowAlert();
           handlePrimaryButtonClick(event);
@@ -53,6 +59,7 @@ const App = () => {
       >
         Click Here
       </Button>
+      <Like onClick={handleLike} />
     </div>
   );
 };
