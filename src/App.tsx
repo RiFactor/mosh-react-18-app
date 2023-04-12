@@ -1,12 +1,12 @@
 import ListGroup from "./components/ListGroup";
-import Alert from "./components/Alert"; // QUESTION -- want to use absolute referencencing
-import Button from "./components/Button";
+import Alert from "components/Alert"; // ANSWERED -- want to use absolute referencencing
+import Button from "components/Button";
 import { MouseEvent } from "react";
 import { useState } from "react";
-import Like from "./components/Like";
-import Tags from "./components/Tags";
-import Bugs from "./components/Bugs";
-import "./App.css";
+import Like from "components/Like";
+import Tags from "components/Tags";
+import Bugs from "components/Bugs";
+import "App.css";
 
 const App = () => {
   const [showAlert, setShowAlert] = useState(false); // QUESTION -- is this destructuring props from useState?
