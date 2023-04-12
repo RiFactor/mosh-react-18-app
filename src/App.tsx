@@ -13,6 +13,7 @@ import ShoppingCart from "components/ShoppingCart";
 import Game from "components/Game";
 import Pizza from "components/Pizza";
 import Cart from "components/Cart";
+import ExpandableText from "components/ExpandableText";
 
 const App = () => {
   const [cartItems, setCartItems] = useState(["shirt", "hat"]);
@@ -79,6 +80,7 @@ const App = () => {
       <Game />
       <Pizza />
       <Cart />
+      <ExpandableText />
     </div>
   );
 };
