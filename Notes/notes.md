@@ -138,9 +138,9 @@ import bootstrap in main.tsx
 
 | State                     | Props                     |
 | ------------------------- | ------------------------- |
-| Input passed to component | Data managed by component |
-| Similar to fn args        | Similar to local var      |
-| Immutable                 | Mutable                   |
+| Data managed by component | Input passed to component |
+| Similar to local var      | Similar to fn args        |
+| Mutable                   | Immutable                 |
 | Cause a re-render         | Cause a re-render         |
 
 <br/>

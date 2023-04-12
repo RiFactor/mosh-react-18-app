@@ -20,7 +20,7 @@ npm run dev // ?
 yarn add -D vite-tsconfig-paths
 ```
 
-> vite.config.ts
+> _vite.config.ts_
 
 ```typescript
 import { defineConfig } from "vite";

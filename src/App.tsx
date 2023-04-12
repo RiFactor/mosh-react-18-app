@@ -1,5 +1,5 @@
 import ListGroup from "./components/ListGroup";
-import Alert from "components/Alert"; // ANSWERED -- want to use absolute referencencing
+import Alert from "components/Alert"; // NTS: install vite plugin for absolute path
 import Button from "components/Button";
 import { MouseEvent } from "react";
 import { useState } from "react";
@@ -13,7 +13,7 @@ import ShoppingCart from "components/ShoppingCart";
 const App = () => {
   const [cartItems, setCartItems] = useState(["shirt", "hat"]);
 
-  const [showAlert, setShowAlert] = useState(false); // ANSWERED -- is this destructuring props from useState?
+  const [showAlert, setShowAlert] = useState(false); // NTS: this is destructuring props from useState
 
   let cities = [
     { name: "New York" },
@@ -25,17 +25,15 @@ const App = () => {
   // cities = [];
 
   const handleSelectCity = (city: string) => {
-    console.log("pass fn via props", city); // ANSWERED -- don't need 'return' for console log b/c returns void
+    console.log("pass fn via props", city); // NTS: don't need 'return' for console log b/c returns void
   };
 
   const handlePrimaryButtonClick = (event: MouseEvent) => {
     console.log(event, "primary button clicked");
-    // setShowAlert(true); // NTS: could create a toggle function
   };
 
   const handleShowAlert = () => {
     setShowAlert(!showAlert);
-    // showAlert ? setShowAlert(false) : setShowAlert(true);
   };
 
   const handleLike = () => {
