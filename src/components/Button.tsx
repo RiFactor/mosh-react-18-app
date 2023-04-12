@@ -1,7 +1,7 @@
 // rafce NTS: shortcut
 import { MouseEvent } from "react";
 import classNames from "classnames";
-import "../styles/btn.css"; // QUESTION -- Is this  method OK or prefer to "import styles from ''", https://codewithmosh.com/courses/ultimate-react-part1/lectures/45915380
+import "../styles/btn.css"; // TODO -- Revisit CSS Modules ''", https://codewithmosh.com/courses/ultimate-react-part1/lectures/45915380
 
 interface IProps {
   buttonType?:

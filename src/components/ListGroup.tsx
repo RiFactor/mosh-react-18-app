@@ -5,17 +5,12 @@ import styles from "../styles/ListGroup.module.css";
 import { FcLinux } from "react-icons/fc";
 import { ImTongue } from "react-icons/im";
 
-interface IItemProps {
+type TItem = {
   name: string; //  NTS preferred to define this above for readability;
-  // QUESTION -- what was the alternate method?
-}
-
-// const styledObject = {
-//   return ({backgroundColor: "purple", padding: "15px"});
-// }
+};
 
 interface IItemsProps {
-  items: IItemProps[];
+  items: TItem[];
   heading: string;
   onSelectItem: (item: string) => void;
 }
@@ -35,6 +30,11 @@ const ListGroup = ({ items, heading, onSelectItem }: IItemsProps) => {
     selectedItem === index ? setSelectedItem(-1) : setSelectedItem(index);
   };
 
+  const object2 = {
+    backgroundColor: "red",
+    padding: "15px",
+  };
+
   return (
     <>
       {/* NTS: No layers w/ react, nesting w/ div or alternate */}
@@ -44,7 +44,10 @@ const ListGroup = ({ items, heading, onSelectItem }: IItemsProps) => {
       {/* <ul className={styles.listGroup}> */}
       <ul
         className={[styles.listGroup, styles.container].join(" ")}
-        style={{ backgroundColor: "purple", padding: "15px" }} // QUESTION -- how do you make this an object
+        style={{
+          backgroundColor: "red",
+          padding: "15px",
+        }} // ANSWERED -- how do you make this an object
       >
         {items?.map((item, index) => (
           <li
