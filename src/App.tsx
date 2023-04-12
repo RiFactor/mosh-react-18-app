@@ -7,8 +7,12 @@ import Like from "components/Like";
 import Tags from "components/Tags";
 import Bugs from "components/Bugs";
 import "App.css";
+import NavBar from "components/NavBar";
+import ShoppingCart from "components/ShoppingCart";
 
 const App = () => {
+  const [cartItems, setCartItems] = useState(["shirt", "hat"]);
+
   const [showAlert, setShowAlert] = useState(false); // ANSWERED -- is this destructuring props from useState?
 
   let cities = [
@@ -39,8 +43,14 @@ const App = () => {
     return true;
   };
 
+  const handleClear = () => {
+    setCartItems([]);
+  };
+
   return (
     <div>
+      <NavBar count={cartItems.length} />
+      <ShoppingCart items={cartItems} onClick={handleClear} />
       <ListGroup
         items={cities}
         heading="Cities"
