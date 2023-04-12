@@ -15,7 +15,7 @@ const Cart = () => {
 
     setCart({
       ...cart,
-      // QUESTION why doesn't mapping the items need to be in a array? [cart.items.map(...)]
+      // QUESTION why doesn't mapping the items need to be in a array? [cart.items.map(...)] (b/c it creates an array? only map arrays not objects?)
       items: cart.items.map((item) => {
         return item.id === id ? { ...item, quantity: item.quantity + 1 } : item;
       }),
@@ -28,14 +28,18 @@ const Cart = () => {
       <ul>
         {cart.items.map((item) => {
           return (
-            <li
-              onClick={() => {
-                handleIncrement(item.id);
-              }}
-              key={item.id}
-            >
-              {item.title} {item.quantity}
-            </li>
+            <div key={item.id}>
+              <li>
+                {item.title} {item.quantity}
+              </li>
+              <button
+                onClick={() => {
+                  handleIncrement(item.id);
+                }}
+              >
+                <span>&#43;</span>
+              </button>
+            </div>
           );
         })}
       </ul>
