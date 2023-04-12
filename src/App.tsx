@@ -14,6 +14,7 @@ import Game from "components/Game";
 import Pizza from "components/Pizza";
 import Cart from "components/Cart";
 import ExpandableText from "components/ExpandableText";
+import ExpandableTextSolution from "components/ExpandableTextSolution";
 
 const App = () => {
   const [cartItems, setCartItems] = useState(["shirt", "hat"]);
@@ -81,6 +82,20 @@ const App = () => {
       <Pizza />
       <Cart />
       <ExpandableText />
+      <ExpandableTextSolution>
+        ETS: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus
+        dolore optio vitae, architecto hic praesentium totam, culpa sed dolorum
+        illum ab officiis fugiat neque nostrum, voluptatum ratione magni. Ipsa
+        quibusdam quam blanditiis velit temporibus molestiae consequatur quae
+        recusandae maxime provident voluptates veniam necessitatibus ea
+        perferendis, asperiores nobis libero est omnis illum commodi praesentium
+        repellat. Eligendi, nobis fuga, culpa rem rerum, enim distinctio numquam
+        et accusamus debitis minus sequi reprehenderit dignissimos error
+        voluptatem non temporibus blanditiis iusto! Corporis dignissimos vero
+        cupiditate nisi, dolor iusto inventore tempora voluptatum, unde aliquam
+        rerum adipisci quo voluptatibus nihil eligendi. Eius eos ducimus
+        repudiandae facilis ratione!
+      </ExpandableTextSolution>
     </div>
   );
 };
