@@ -1,4 +1,5 @@
 import { useState } from "react";
+import produce from "immer";
 
 const Bugs = () => {
   const [bugs, setBugs] = useState([
@@ -8,8 +9,25 @@ const Bugs = () => {
 
   const handleClick = () => {
     console.log("clicked");
+    // setBugs(
+    //   bugs.map((bug) => (bug.id === 1 ? { ...bug, type: "fixed" } : bug))
+    // );
+
+    // // Passing anon fn
+    // setBugs((state) => {
+    //   return state.map((bug) =>
+    //     bug.id === 1 ? { ...bug, type: "fixed" } : bug
+    //   );
+    // });
+
+    // Immer
     setBugs(
-      bugs.map((bug) => (bug.id === 1 ? { ...bug, type: "fixed" } : bug))
+      produce((draft: any) => {
+        const bug = draft.find((bug: any) => bug.id === 1);
+        if (bug) {
+          bug.type = "fixed";
+        }
+      })
     );
   };
 
@@ -18,7 +36,7 @@ const Bugs = () => {
       <h1>Bugs</h1>
       {bugs.map((bug) => (
         <p key={bug.id} onClick={() => handleClick()}>
-          {bug.name} {bug.type === "new" ? "new" : "fixed"}
+          {bug.name} {bug.type === "new" ? "New" : "Fixed"}
         </p>
       ))}
     </>
