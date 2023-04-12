@@ -5,7 +5,9 @@ Videos:
 
       Additional exercises:
 
-- [ ] Implement immer in Game.tsx setState
+- [ ] Implement immer in setState
+  - [ ] Game.tsx
+  - [ ] Cart.tsx
 
 ```typescript
 // TODO: try Immer here

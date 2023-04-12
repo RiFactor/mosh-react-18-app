@@ -1,14 +1,18 @@
-import ListGroup from "./components/ListGroup";
-import Alert from "components/Alert"; // NTS: install vite plugin for absolute path
-import Button from "components/Button";
 import { MouseEvent } from "react";
 import { useState } from "react";
+import "App.css";
+
+import ListGroup from "components/ListGroup"; // NTS: install vite plugin for absolute path
+import Alert from "components/Alert";
+import Button from "components/Button";
 import Like from "components/Like";
 import Tags from "components/Tags";
 import Bugs from "components/Bugs";
-import "App.css";
 import NavBar from "components/NavBar";
 import ShoppingCart from "components/ShoppingCart";
+import Game from "components/Game";
+import Pizza from "components/Pizza";
+import Cart from "components/Cart";
 
 const App = () => {
   const [cartItems, setCartItems] = useState(["shirt", "hat"]);
@@ -72,6 +76,9 @@ const App = () => {
       <Like onClick={handleLike} />
       <Tags />
       <Bugs />
+      <Game />
+      <Pizza />
+      <Cart />
     </div>
   );
 };
