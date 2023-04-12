@@ -34,7 +34,7 @@ const ExpandableText = () => {
       <p>
         {expandableText.showText
           ? expandableText.text
-          : expandableText.text.substring(0, expandableText.charLimit)}
+          : expandableText.text.substring(0, expandableText.charLimit) + "..."}
         <button style={{ margin: "0.125rem" }} onClick={handleExpandableText}>
           {expandableText.showText ? "Less" : "More"}
         </button>

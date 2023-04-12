@@ -9,10 +9,12 @@ const ExpandableTextSolution = ({ children, charLimit = 25 }: IProps) => {
   const [showText, setShowText] = useState(false);
 
   if (children.length <= charLimit) return <p>{children}</p>;
+
+  const text = showText ? children : children.substring(0, charLimit) + "...";
   return (
     <div>
       <p>
-        {showText ? children : children.substring(0, charLimit)}
+        {text}
         <button onClick={() => setShowText(!showText)}>
           {showText ? "Less" : "More"}
         </button>
