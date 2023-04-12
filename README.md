@@ -31,4 +31,8 @@ export default defineConfig({
 });
 ```
 
+```shell
+npm i immer@9.0.19
+```
+
 <br/>

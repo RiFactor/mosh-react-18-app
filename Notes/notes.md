@@ -11,8 +11,8 @@
 
 ### Terminology
 
-    - hot module replacement (hmr)
-
+- hot module replacement (hmr)
+- Minified - minimise
 - Immuatable - unchangeable
 
   - Mutate - change
@@ -93,6 +93,10 @@ Key files
 <br/>
 
 ## Creating a React App
+
+equivalent to npx
+
+yarn create equates to a global install
 
 ```shell
 npm create vite@latest
