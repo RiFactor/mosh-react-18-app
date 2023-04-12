@@ -18,7 +18,7 @@ const Tags = () => {
       console.log("tags", state, tags); // Pass anon fn and access current working 'state', for toggle or cancel re-render
       return state.map((tag) => (tag === "old" ? "like new" : tag));
     });
-    console.log("tags", tags); // React waits for the entire code block before updating the tags (last render), so this will not be up-to-date when run
+    console.log("tags logged", tags); // React waits for the entire code block before updating the tags (last render), so this will not be up-to-date when run
   };
 
   return (
