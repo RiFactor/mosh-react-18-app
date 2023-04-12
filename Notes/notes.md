@@ -27,15 +27,16 @@ Key files
 > main.tsx
 
 <br/>
+
 ## Creating a React App
 
-```
+```shell
 npm create vite@latest
 > y
 > React
 > TypeScript
 
-cd [app]
+cd [app-name]
 
 npm i // install
 
@@ -59,7 +60,7 @@ code . // or open on VS code
 
 ## Building Components
 
-```
+```shell
 npm i bootstrap@[version number]
 ```
 
@@ -102,7 +103,7 @@ _Complex, in the same file_
 
 Styled components:
 
-```
+```shell
 npm i styled-components
 npm i @types/styled-components
 ```
@@ -126,7 +127,7 @@ _Can become cluttered_
 
 ### React Icons
 
-```
+```shell
 npm i react-icons@[latest version]
 ```
 

@@ -1,0 +1,3 @@
+- [ ] Complete videos
+- [ ] Complete notes
+- [x] Take notes
