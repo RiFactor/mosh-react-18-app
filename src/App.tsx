@@ -9,7 +9,7 @@ import Bugs from "components/Bugs";
 import "App.css";
 
 const App = () => {
-  const [showAlert, setShowAlert] = useState(false); // QUESTION -- is this destructuring props from useState?
+  const [showAlert, setShowAlert] = useState(false); // ANSWERED -- is this destructuring props from useState?
 
   let cities = [
     { name: "New York" },
@@ -21,7 +21,7 @@ const App = () => {
   // cities = [];
 
   const handleSelectCity = (city: string) => {
-    console.log("pass fn via props", city); // QUESTION -- don't need 'return' for console log?
+    console.log("pass fn via props", city); // ANSWERED -- don't need 'return' for console log b/c returns void
   };
 
   const handlePrimaryButtonClick = (event: MouseEvent) => {

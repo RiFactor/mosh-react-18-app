@@ -6,14 +6,22 @@ const Bugs = () => {
     { id: 2, name: "navigation", type: "new" },
   ]);
 
+  const handleClick = () => {
+    console.log("clicked");
+    setBugs(
+      bugs.map((bug) => (bug.id === 1 ? { ...bug, type: "fixed" } : bug))
+    );
+  };
+
   return (
-    <div>
+    <>
+      <h1>Bugs</h1>
       {bugs.map((bug) => (
-        <p key={bug.id}>
+        <p key={bug.id} onClick={() => handleClick()}>
           {bug.name} {bug.type === "new" ? "new" : "fixed"}
         </p>
       ))}
-    </div>
+    </>
   );
 };
 
