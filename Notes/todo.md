@@ -12,6 +12,7 @@ Videos:
 Refactor:
 
 - TS: resolve types that are 'any' and correct
+- Nav Bar / Contents Page to separately display components
 
 ```typescript
 // TODO: try Immer here

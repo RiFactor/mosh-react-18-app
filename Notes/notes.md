@@ -297,6 +297,8 @@ no value () = undefined, lead to later issues
 
 ### Controlled Components
 
+better for validation during typing (or can wait til the end)
+
 > _ControlledForm.tsx_
 
 - Prevent State and input sources being out of sync: make React the source of truth.

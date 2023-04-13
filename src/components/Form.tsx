@@ -1,12 +1,17 @@
 import { FormEvent, useRef } from "react";
 
+type TPerson = {
+  name?: string;
+  age?: number;
+};
+
 const Form = () => {
   // NTS: must initialise all to null
   const nameRef = useRef<HTMLInputElement>(null);
   const ageRef = useRef<HTMLInputElement>(null);
-  const person = {
-    name: "",
-    age: 0, // QUESTION -- why intialised to 0?
+  const person: TPerson = {
+    // name: "",
+    // age: 0, // ANSWERED -- why intialised to 0?
   };
 
   const handleSubmit = (event: FormEvent) => {
