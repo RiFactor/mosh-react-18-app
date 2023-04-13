@@ -16,6 +16,7 @@ import Cart from "components/Cart";
 import ExpandableText from "components/ExpandableText";
 import ExpandableTextSolution from "components/ExpandableTextSolution";
 import Form from "components/Form";
+import ControlledForm from "components/ControlledForm";
 
 const App = () => {
   const [cartItems, setCartItems] = useState(["shirt", "hat"]);
@@ -99,6 +100,7 @@ const App = () => {
       </ExpandableTextSolution>
 
       <Form />
+      <ControlledForm />
     </div>
   );
 };

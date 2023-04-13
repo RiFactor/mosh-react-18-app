@@ -6,7 +6,7 @@ const Form = () => {
   const ageRef = useRef<HTMLInputElement>(null);
   const person = {
     name: "",
-    age: 0,
+    age: 0, // QUESTION -- why intialised to 0?
   };
 
   const handleSubmit = (event: FormEvent) => {
@@ -24,7 +24,7 @@ const Form = () => {
     <form
       onSubmit={
         handleSubmit
-        // (event) => console.log("test") // log here to see typeof for 'event'
+        // (event) => console.log("test") // NTS: start here to see typeof for 'event'
       }
     >
       <div className="mb-3">

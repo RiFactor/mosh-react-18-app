@@ -284,6 +284,8 @@ button.btn.btn - primary; // to add multiple classes
 
 ### Accessing Input Fields
 
+> _Form.tsx_
+
 _TODO rewrite with better understanding_
 Must initialise every useRef obj w/ null
 ref.current references DOM node
@@ -292,6 +294,15 @@ when ref created, no access to DOM node b/c React renders then DOM node created
 therefore no initial value to provide
 when react renders component + creates dom -> sets current property to dom node then null when removed from screen, either null or Dom must exist
 no value () = undefined, lead to later issues
+
+### Controlled Components
+
+> _ControlledForm.tsx_
+
+- Prevent State and input sources being out of sync: make React the source of truth.
+  Set input value={stateVar}
+- so that input field relies on state var value
+- state is controlled (stored + updated in component state) by react, value not managed by DOM
 
 </details>
 
