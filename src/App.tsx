@@ -15,8 +15,9 @@ import Pizza from "components/Pizza";
 import Cart from "components/Cart";
 import ExpandableText from "components/ExpandableText";
 import ExpandableTextSolution from "components/ExpandableTextSolution";
-import Form from "components/Form";
-import ControlledForm from "components/ControlledForm";
+import Form from "components/Forms/Form";
+import ControlledForm from "components/Forms/ControlledForm";
+import FormHook from "components/Forms/FormHook";
 
 const App = () => {
   const [cartItems, setCartItems] = useState(["shirt", "hat"]);
@@ -101,6 +102,7 @@ const App = () => {
 
       <Form />
       <ControlledForm />
+      <FormHook />
     </div>
   );
 };

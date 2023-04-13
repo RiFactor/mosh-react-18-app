@@ -30,7 +30,8 @@ const ListGroup = ({ items, heading, onSelectItem }: IItemsProps) => {
     selectedItem === index ? setSelectedItem(-1) : setSelectedItem(index);
   };
 
-  const object2 = {
+  const styledObject = {
+    // NTS: can be inline or an object like this
     backgroundColor: "red",
     padding: "15px",
   };
@@ -44,10 +45,7 @@ const ListGroup = ({ items, heading, onSelectItem }: IItemsProps) => {
       {/* <ul className={styles.listGroup}> */}
       <ul
         className={[styles.listGroup, styles.container].join(" ")}
-        style={{
-          backgroundColor: "red",
-          padding: "15px",
-        }} // ANSWERED -- how do you make this an object
+        style={styledObject}
       >
         {items?.map((item, index) => (
           <li

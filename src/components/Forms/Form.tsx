@@ -9,10 +9,7 @@ const Form = () => {
   // NTS: must initialise all to null
   const nameRef = useRef<HTMLInputElement>(null);
   const ageRef = useRef<HTMLInputElement>(null);
-  const person: TPerson = {
-    // name: "",
-    // age: 0, // ANSWERED -- why intialised to 0?
-  };
+  const person: TPerson = {};
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();

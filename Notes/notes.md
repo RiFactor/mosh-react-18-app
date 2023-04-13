@@ -306,6 +306,10 @@ better for validation during typing (or can wait til the end)
 - so that input field relies on state var value
 - state is controlled (stored + updated in component state) by react, value not managed by DOM
 
+### Managing Forms with React Hook Form
+
+Submit handler: fn that receives data in a form
+
 </details>
 
 <details>

@@ -9,12 +9,13 @@ const ControlledForm = () => {
   const [person, setPerson] = useState<TPerson>({});
 
   const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
     console.log(person);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Controlled Form</h1>
+      <h3>Controlled Form</h3>
 
       <div className="mb-3">
         <label htmlFor="name" className="form-label">
@@ -24,7 +25,7 @@ const ControlledForm = () => {
           onChange={(event) => {
             setPerson({ ...person, name: event.target.value });
           }}
-          value={person.name || ""}
+          value={person.name || ""} // QUESTION -- these are falsy so if I pass || "derek", it will render this b/c those are falsy
           id="name"
           type="text"
           className="form-control"
