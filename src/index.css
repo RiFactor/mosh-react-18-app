@@ -3,3 +3,9 @@
     color: white;
 }
 
+body {
+    padding: 20px;
+    /* TODO bootstrap overrides this, override bootstrap (or remove later) */
+    background-color: black; 
+    color: white;
+}

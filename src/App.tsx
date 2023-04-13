@@ -15,6 +15,7 @@ import Pizza from "components/Pizza";
 import Cart from "components/Cart";
 import ExpandableText from "components/ExpandableText";
 import ExpandableTextSolution from "components/ExpandableTextSolution";
+import Form from "components/Form";
 
 const App = () => {
   const [cartItems, setCartItems] = useState(["shirt", "hat"]);
@@ -96,6 +97,8 @@ const App = () => {
         rerum adipisci quo voluptatibus nihil eligendi. Eius eos ducimus
         repudiandae facilis ratione!
       </ExpandableTextSolution>
+
+      <Form />
     </div>
   );
 };

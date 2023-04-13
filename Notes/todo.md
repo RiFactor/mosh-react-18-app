@@ -1,6 +1,6 @@
 Videos:
 
-- [ ] Revisit modules ? (Resolved by tailwind)
+- [ ] Revisit CSS modules (Resolved by tailwind)
 - [ ] Revisit CSS in JS
 
       Additional exercises:
@@ -8,6 +8,10 @@ Videos:
 - [ ] Implement immer in setState
   - [ ] Game.tsx
   - [ ] Cart.tsx
+
+Refactor:
+
+- TS: resolve types that are 'any' and correct
 
 ```typescript
 // TODO: try Immer here

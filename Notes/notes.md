@@ -271,8 +271,27 @@ setPerson(...person, address: {...person.address, town: "Chicago"})
 </details>
 
 <details> 
-<summary> Building Forms ...
+<summary> Building Forms
 </summary>
+
+shorthand: tab to complete; then add id etc.
+_(ignore spaces, auto-save forces this here)_
+
+```typescript
+div.mb - 3 > label.form - label + input[(type = number)].form - control; // > to  nest; + next to
+button.btn.btn - primary; // to add multiple classes
+```
+
+### Accessing Input Fields
+
+_TODO rewrite with better understanding_
+Must initialise every useRef obj w/ null
+ref.current references DOM node
+initial value passed will set current property
+when ref created, no access to DOM node b/c React renders then DOM node created
+therefore no initial value to provide
+when react renders component + creates dom -> sets current property to dom node then null when removed from screen, either null or Dom must exist
+no value () = undefined, lead to later issues
 
 </details>
 
