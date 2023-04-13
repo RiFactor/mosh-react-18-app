@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 const ExpandableText = () => {
-  const [charLimit, setCharLimit] = useState(10); // QUESTION, can the type change, e.g. become a string, is this where TS then stops type changes
+  const [charLimit, setCharLimit] = useState(10); // TODO, try it out: can the type change, e.g. become a string, TS will stop type change
   const [showText, setShowText] = useState(false);
   const [text, setText] = useState("Expandable Text Over a character limit");
 
   const [expandableText, setExpandableText] = useState({
-    // QUESTION -- is it preferred to store these related items in one state?
+    // ANSWERED -- is it preferred to store these related items in one state? (would instead use redux or use Query)
     charLimit: 10,
     showText: false,
     text: "I bought dog flea treatment and later relaxed with a cup of tea then realised I'd left my shoehorn in the car.",

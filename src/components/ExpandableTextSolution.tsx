@@ -12,14 +12,12 @@ const ExpandableTextSolution = ({ children, charLimit = 25 }: IProps) => {
 
   const text = showText ? children : children.substring(0, charLimit) + "...";
   return (
-    <div>
-      <p>
-        {text}
-        <button onClick={() => setShowText(!showText)}>
-          {showText ? "Less" : "More"}
-        </button>
-      </p>
-    </div>
+    <p>
+      {text}
+      <button onClick={() => setShowText(!showText)}>
+        {showText ? "Less" : "More"}
+      </button>
+    </p>
   );
 };
 
