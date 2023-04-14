@@ -21,7 +21,7 @@ const ZodForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<TFormData>({ resolver: zodResolver(schema) });
 
   console.log("errors", errors);
@@ -62,6 +62,7 @@ const ZodForm = () => {
         {errors.age && <p className="text-danger">{errors.age.message}</p>}
       </div>
       <button className="btn btn-primary" type="submit">
+        {/* QUESTION --  */}
         Submit
       </button>
     </form>
