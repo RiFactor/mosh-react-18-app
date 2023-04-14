@@ -1,18 +1,28 @@
 import { FormEvent, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import { z } from "zod";
+import { Schema, z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const minimumLength = 3;
 
 const schema = z.object({
-  name: z.string().min(3),
-  age: z.number().min(18).nonnegative(), // QUESTION -- nonnegative not working
+  name: z.string().min(minimumLength, {
+    message: `Name must be at least ${minimumLength} characters`,
+  }), // QUESTION can the minimum value be put into a constant - is there a better way
+  age: z
+    .number({ invalid_type_error: "Age field is required" })
+    .min(18, { message: "Age must be at least 18" })
+    .nonnegative(), // QUESTION -- nonnegative not working
 });
+
+type TFormData = z.infer<typeof schema>;
 
 const ZodForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<TFormData>({ resolver: zodResolver(schema) });
 
   console.log("errors", errors);
 
@@ -29,7 +39,7 @@ const ZodForm = () => {
           Name
         </label>
         <input
-          {...register("name", { required: true, minLength: 2 })}
+          {...register("name")}
           id="name"
           type="text"
           className="form-control"
@@ -37,23 +47,19 @@ const ZodForm = () => {
         {errors.name?.type === "required" && (
           <p className="text-danger">Please provide a name.</p>
         )}
-        {errors.name?.type === "minLength" && (
-          <p className="text-danger">Name must be at least two letters long.</p>
-        )}
+        {errors.name && <p className="text-danger">{errors.name.message}</p>}
       </div>
       <div className="mb-3">
         <label htmlFor="age" className="form-label">
           Age
         </label>
         <input
-          {...register("age", { required: true })}
+          {...register("age", { valueAsNumber: true })} // QUESTION is value as number a nested obj?
           id="age"
           type="number"
           className="form-control"
         />
-        {errors.age?.type === "required" && (
-          <p className="text-danger">Please provide an age.</p>
-        )}
+        {errors.age && <p className="text-danger">{errors.age.message}</p>}
       </div>
       <button className="btn btn-primary" type="submit">
         Submit

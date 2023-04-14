@@ -318,6 +318,8 @@ QUESTION -- difference between yarn add and npm i?
 
 QUESTION -- do we use yup (solely)?
 
+value props of input fields always return string so need to convert to desired type
+
 </details>
 
 <details>
