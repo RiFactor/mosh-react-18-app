@@ -1,50 +1,59 @@
-import { FormEvent, useRef, useState } from "react";
-type TPerson = {
-  // NTS: Prefer to create types and not initialise state values
-  name?: string;
-  age?: number;
-};
+import { FormEvent, useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
+import { z } from "zod";
 
-const ControlledForm = () => {
-  const [person, setPerson] = useState<TPerson>({});
+const schema = z.object({
+  name: z.string().min(3),
+  age: z.number().min(18).nonnegative(), // QUESTION -- nonnegative not working
+});
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log(person);
+const ZodForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  console.log("errors", errors);
+
+  const onSubmit = (data: FieldValues) => {
+    console.log(data);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Controlled Form</h3>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <h3>Zod Form</h3>
 
       <div className="mb-3">
         <label htmlFor="name" className="form-label">
           Name
         </label>
         <input
-          onChange={(event) => {
-            setPerson({ ...person, name: event.target.value });
-          }}
-          value={person.name || ""} // QUESTION -- these are falsy so if I pass || "derek", it will render this b/c those are falsy
+          {...register("name", { required: true, minLength: 2 })}
           id="name"
           type="text"
           className="form-control"
         />
+        {errors.name?.type === "required" && (
+          <p className="text-danger">Please provide a name.</p>
+        )}
+        {errors.name?.type === "minLength" && (
+          <p className="text-danger">Name must be at least two letters long.</p>
+        )}
       </div>
       <div className="mb-3">
         <label htmlFor="age" className="form-label">
           Age
         </label>
         <input
-          onChange={(event) =>
-            setPerson({ ...person, age: parseInt(event.target.value) })
-          }
-          value={person.age || ""}
-          // NTS resolve console error for undefined input value from state
-          name="age"
+          {...register("age", { required: true })}
+          id="age"
           type="number"
           className="form-control"
         />
+        {errors.age?.type === "required" && (
+          <p className="text-danger">Please provide an age.</p>
+        )}
       </div>
       <button className="btn btn-primary" type="submit">
         Submit
@@ -53,4 +62,4 @@ const ControlledForm = () => {
   );
 };
 
-export default ControlledForm;
+export default ZodForm;
