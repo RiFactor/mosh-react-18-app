@@ -18,6 +18,7 @@ import ExpandableTextSolution from "components/ExpandableTextSolution";
 import Form from "components/Forms/Form";
 import ControlledForm from "components/Forms/ControlledForm";
 import FormHook from "components/Forms/FormHook";
+import ZodForm from "components/Forms/ZodForm";
 
 const App = () => {
   const [cartItems, setCartItems] = useState(["shirt", "hat"]);
@@ -103,6 +104,7 @@ const App = () => {
       <Form />
       <ControlledForm />
       <FormHook />
+      <ZodForm />
     </div>
   );
 };

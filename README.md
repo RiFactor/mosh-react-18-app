@@ -35,4 +35,21 @@ export default defineConfig({
 npm i immer@9.0.19
 ```
 
+### Managing Forms with React Hook Form
+
+```shell
+yarn add react-hook-form
+```
+
+### Schema based Validation with Zod
+
+```shell
+yard add zod@[latest version]
+```
+
+```shell
+yarn add @hookform/resolvers@[latest version]
+```
+
 <br/>
+```
