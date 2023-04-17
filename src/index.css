@@ -1,11 +1,11 @@
 :root {
-    background-color: black;
+    /* background-color: black; */
     color: white;
 }
 
 body {
     padding: 20px;
     /* TODO bootstrap overrides this, override bootstrap (or remove later) */
-    background-color: black; 
+    /* background-color: black;  */
     color: white;
 }
