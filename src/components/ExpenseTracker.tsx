@@ -7,11 +7,7 @@ type TExpense = {
 };
 
 const ExpenseTracker = () => {
-  const descriptionRef = useRef<HTMLInputElement>(null);
-  const amountRef = useRef<HTMLInputElement>(null);
-  const categoryRef = useRef<HTMLInputElement>(null);
-  const expense: TExpense = {};
-  console.log(expense, "empty expense");
+  const [expense, setExpense] = useState<TExpense>({});
 
   // const [expenses, setExpenses] = useState({
   //   description: "test",
@@ -21,16 +17,6 @@ const ExpenseTracker = () => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    if (descriptionRef.current !== null) {
-      expense.description = descriptionRef.current.value;
-    }
-    if (amountRef.current !== null) {
-      expense.amount = parseInt(amountRef.current.value);
-    }
-    if (categoryRef.current !== null) {
-      expense.category = categoryRef.current.value;
-    }
-
     console.log("submitted expense tracker", expense);
     // setExpenses([...expenses]);
   };
@@ -38,13 +24,16 @@ const ExpenseTracker = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <h1>Expense Tracker</h1>
+        <h3>Expense Tracker</h3>
         <div className="mb-3">
           <label htmlFor="description" className="form-label">
             Description
           </label>
           <input
-            ref={descriptionRef}
+            onChange={(event) => {
+              setExpense({ ...expense, description: event.target.value });
+            }}
+            value={expense.description || ""}
             id="description"
             type="text"
             className="form-control"
@@ -55,7 +44,10 @@ const ExpenseTracker = () => {
             Amount
           </label>
           <input
-            ref={amountRef}
+            onChange={(event) => {
+              setExpense({ ...expense, amount: parseInt(event.target.value) });
+            }}
+            value={expense.amount || ""}
             id="amount"
             type="number"
             className="form-control"
@@ -67,7 +59,10 @@ const ExpenseTracker = () => {
           </label>
           {/* ToDo selection? */}
           <input
-            ref={categoryRef}
+            onChange={(event) => {
+              setExpense({ ...expense, category: event.target.value });
+            }}
+            value={expense.category || ""}
             id="category"
             type="text"
             className="form-control"
