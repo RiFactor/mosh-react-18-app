@@ -303,10 +303,12 @@ better for validation during typing (or can wait til the end)
 
 > _ControlledForm.tsx_
 
+- HTHML input fields have value prop to maintain own state
+
 - Prevent State and input sources being out of sync: make React the source of truth.
   Set input value={stateVar}
 - so that input field relies on state var value
-- state is controlled (stored + updated in component state) by react, value not managed by DOM
+- so that state is controlled (stored + updated in component state) by react, value no longer managed by DOM
 
 ### Managing Forms with React Hook Form
 
@@ -346,9 +348,13 @@ onClick={() => handleClick()}
 onClick={() => {
   handleClick();
 }}
+
+// THIS IS DIFFERENT
+onClick={handleClick()} // the function is initalised on render
+
 ```
 
-- **return** maps, components etc. which not in single-line shorthand
+- **return** maps, components etc. when not in single-line shorthand
 
 ```typescript
 array.map(a =>
@@ -357,3 +363,19 @@ return {abc}
 ```
 
 st else??
+
+Remember to put the new value inside the object with the spread
+
+```typescript
+onChange={(event) => {
+              setExpense({ ...expense, category: event.target.value });
+            }}
+```
+
+NOT
+
+```typescript
+onChange={(event) => {
+setExpense({ ...expense }, category: event.target.value ); // this is wrong
+}}
+```
