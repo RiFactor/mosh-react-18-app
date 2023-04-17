@@ -1,23 +1,38 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
+
+type TExpense = {
+  description?: string; // QUESTION should these be optional?
+  amount?: number;
+  category?: string; // TODO: to figure out how to make options!
+};
 
 const ExpenseTracker = () => {
-  const [expenses, setExpenses] = useState([
-    {
-      description: "test",
-      amount: 0,
-      category: "test", // ToDo preselected list?
-    },
-    {
-      description: "test2",
-      amount: 5,
-      category: "test2", // ToDo preselected list?
-    },
-  ]);
+  const descriptionRef = useRef<HTMLInputElement>(null);
+  const amountRef = useRef<HTMLInputElement>(null);
+  const categoryRef = useRef<HTMLInputElement>(null);
+  const expense: TExpense = {};
+  console.log(expense, "empty expense");
+
+  // const [expenses, setExpenses] = useState({
+  //   description: "test",
+  //   amount: 0,
+  //   category: "test", // ToDo preselected list?
+  // });
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    console.log("submitted expense tracker");
-    setExpenses([...expenses]);
+    if (descriptionRef.current !== null) {
+      expense.description = descriptionRef.current.value;
+    }
+    if (amountRef.current !== null) {
+      expense.amount = parseInt(amountRef.current.value);
+    }
+    if (categoryRef.current !== null) {
+      expense.category = categoryRef.current.value;
+    }
+
+    console.log("submitted expense tracker", expense);
+    // setExpenses([...expenses]);
   };
 
   return (
@@ -28,20 +43,35 @@ const ExpenseTracker = () => {
           <label htmlFor="description" className="form-label">
             Description
           </label>
-          <input id="description" type="text" className="form-control" />
+          <input
+            ref={descriptionRef}
+            id="description"
+            type="text"
+            className="form-control"
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="amount" className="form-label">
             Amount
           </label>
-          <input id="amount" type="number" className="form-control" />
+          <input
+            ref={amountRef}
+            id="amount"
+            type="number"
+            className="form-control"
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="category" className="form-label">
             Category
           </label>
           {/* ToDo selection? */}
-          <input id="category" type="text" className="form-control" />
+          <input
+            ref={categoryRef}
+            id="category"
+            type="text"
+            className="form-control"
+          />
           {/* what does htmlFor and input do?? */}
         </div>
         <button className="btn btn-primary">Submit</button>
@@ -57,7 +87,7 @@ const ExpenseTracker = () => {
               <th scope="col">Category</th>
             </tr>
           </thead>
-          <tbody>
+          {/* <tbody>
             {expenses.map((expense: any, index: number) => {
               return (
                 <tr key={index}>
@@ -67,7 +97,7 @@ const ExpenseTracker = () => {
                 </tr>
               );
             })}
-          </tbody>
+          </tbody> */}
         </table>
       </div>
     </>
