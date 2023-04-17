@@ -5,7 +5,7 @@ Videos:
 
       Additional exercises:
 
-- [ ] Implement immer in setState
+- [ ] Implement immer in setState / read docs
   - [ ] Game.tsx
   - [ ] Cart.tsx
 

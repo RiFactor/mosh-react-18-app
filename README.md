@@ -31,6 +31,8 @@ export default defineConfig({
 });
 ```
 
+npm i OR yarn add
+
 ```shell
 npm i immer@9.0.19
 ```

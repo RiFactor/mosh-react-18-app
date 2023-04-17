@@ -1,6 +1,6 @@
 # React 18 Notes
 
-> _QUESTION -- members of an object are properties or methods (functions) ? correct terminology?_
+> _QUESTION2 -- members of an object are properties or methods (functions) ? correct terminology?_
 
 <br/>
 
@@ -228,7 +228,7 @@ import
 ### Keeping Components Pure
 
 - Same input (props) will result in the same output (JSX), therefore React can skip re-rendering
-  _QUESTION -- what about a dice producing random results, would that be diff??_
+  _QUESTION2 -- what about a dice producing random results, would that be diff??_
 - Keep changes out of the render phase or put var inside component
 
 ### Strict Mode
@@ -312,11 +312,9 @@ better for validation during typing (or can wait til the end)
 
 Submit handler: fn that receives data in a form
 
-QUESTION -- difference between yarn add and npm i?
-
 ### Schema based Validation with Zod
 
-QUESTION -- do we use yup (solely)?
+Cube - yup
 
 value props of input fields always return string so need to convert to desired type
 
