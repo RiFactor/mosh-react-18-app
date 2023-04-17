@@ -146,9 +146,11 @@ const ExpenseTracker = () => {
 
         <select
           value={selectedExpenseCategory}
-          onChange={(event) => setSelectedExpenseCategory(event.target.value)}
+          onChange={(event) => {
+            setSelectedExpenseCategory(event.target.value);
+          }}
         >
-          <option>Everything</option>
+          <option value="">Everything</option>
           {options.map((option) => {
             return (
               <option key={option.value} value={option.value}>
@@ -169,24 +171,30 @@ const ExpenseTracker = () => {
             </tr>
           </thead>
           <tbody>
-            {expenses.map((expense: any, index: number) => {
-              return (
-                <tr key={index}>
-                  <th scope="row">{expense.id}</th>
-                  <th scope="row">{expense.description}</th>
-                  <td>{expense.amount}</td>
-                  <td>{expense.category}</td>
-                  <td>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => handleDelete(expense.id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+            {expenses
+              .filter((expense) =>
+                selectedExpenseCategory === ""
+                  ? expense
+                  : expense.category === selectedExpenseCategory
+              )
+              .map((expense: any, index: number) => {
+                return (
+                  <tr key={index}>
+                    <th scope="row">{expense.id}</th>
+                    <th scope="row">{expense.description}</th>
+                    <td>{expense.amount}</td>
+                    <td>{expense.category}</td>
+                    <td>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => handleDelete(expense.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
