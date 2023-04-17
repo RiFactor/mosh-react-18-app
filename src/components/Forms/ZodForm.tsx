@@ -43,9 +43,6 @@ const ZodForm = () => {
           type="text"
           className="form-control"
         />
-        {errors.name?.type === "required" && (
-          <p className="text-danger">Please provide a name.</p>
-        )}
         {errors.name && <p className="text-danger">{errors.name.message}</p>}
       </div>
       <div className="mb-3">
