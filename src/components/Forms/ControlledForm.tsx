@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useState } from "react";
 type TPerson = {
   // NTS: Prefer to create types and not initialise state values
   name?: string;
