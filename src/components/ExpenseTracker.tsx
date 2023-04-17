@@ -56,12 +56,12 @@ const ExpenseTracker = () => {
   const onSubmit = (data: FieldValues) => {
     setExpenses([
       ...expenses,
-      // {
-      //   id: expenses.length + 1,
-      //   description: "item",
-      //   amount: 0.05,
-      //   category: "utilities",
-      // },
+      {
+        id: expenses.length + 1,
+        description: "item",
+        amount: 1.5,
+        category: "utilities",
+      },
     ]);
     console.log(data, "submit data");
     console.log(expenses, "final expenses");
@@ -77,6 +77,23 @@ const ExpenseTracker = () => {
   // const handleSelectedExpenseCategory = (event: HTMLSelectElement) => {
   //   setSelectedExpenseCategory(event.target.value);
   // };
+
+  const filteredList = () => {
+    const filteredExpenses = expenses.filter((expense) =>
+      selectedExpenseCategory === ""
+        ? expense
+        : expense.category === selectedExpenseCategory
+    );
+
+    let amount = 0;
+
+    filteredExpenses.map((expense) => {
+      amount += expense.amount;
+    });
+
+    console.log(filteredExpenses);
+    return amount;
+  };
 
   return (
     <>
@@ -194,6 +211,10 @@ const ExpenseTracker = () => {
                   </tr>
                 );
               })}
+            <tr>
+              Total
+              <th>{filteredList()}</th>
+            </tr>
           </tbody>
         </table>
       </div>
