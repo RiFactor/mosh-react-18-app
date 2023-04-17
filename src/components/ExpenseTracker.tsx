@@ -1,17 +1,43 @@
 import { FieldValues, useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 
-type TExpense = {
-  description?: string; // QUESTION should these be optional?
-  amount?: number;
-  category?: string; // ToDo: to figure out how to make options!
-};
+const minimumLength = 3;
+
+const schema = z.object({
+  description: z
+    .string()
+    .nonempty({ message: "Please provide a description." }) // should this be in?
+    .min(minimumLength, { message: "Please enter at least 2 characters." }),
+  amount: z
+    .number({ invalid_type_error: "Number is required" }) // when empty string
+    .min(0.01, { message: "Amount must be at least £0.01." })
+    .nonnegative({ message: "Amount cannot be negative." }),
+  category: z
+    // ToDo: to figure out how to make options!; zod enum
+    .string()
+    .min(minimumLength, { message: "Please enter at least 2 characters." }),
+});
+
+// const required?
+
+type TExpense = z.infer<typeof schema>;
 
 const ExpenseTracker = () => {
+  const [expenses, setExpenses] = useState([
+    {
+      description: "test",
+      amount: "2",
+      category: "groceries",
+    },
+  ]); // want an aray of objects
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<TExpense>(); // QUESTION -- no obj, null, nothing passed in brackets here?
+    formState: { errors, isValid },
+  } = useForm<TExpense>({ resolver: zodResolver(schema) });
 
   console.log(register("category")); // should exist but will let you enter non-existent value
 
@@ -28,16 +54,13 @@ const ExpenseTracker = () => {
             Description
           </label>
           <input
-            {...register("description", { required: true, minLength: 2 })}
+            {...register("description")}
             id="description"
             type="text"
             className="form-control"
           />
-          {errors.description?.type === "required" && (
-            <p className="text-danger">Please provide a description.</p>
-          )}
-          {errors.description?.type === "minLength" && (
-            <p className="text-danger">Please enter at least 2 characters.</p>
+          {errors.description && (
+            <p className="text-danger">{errors.description.message}</p>
           )}
         </div>
         <div className="mb-3">
@@ -45,13 +68,13 @@ const ExpenseTracker = () => {
             Amount
           </label>
           <input
-            {...register("amount", { required: true })}
+            {...register("amount", { valueAsNumber: true })}
             id="amount"
             type="number"
             className="form-control"
           />
-          {errors.amount?.type === "required" && (
-            <p className="text-danger">Please provide an amount</p>
+          {errors.amount && (
+            <p className="text-danger">{errors.amount.message}</p>
           )}
         </div>
         <div className="mb-3">
@@ -60,20 +83,22 @@ const ExpenseTracker = () => {
           </label>
           {/* ToDo selection? */}
           <input
-            {...register("category", { required: true, minLength: 2 })}
+            {...register("category")}
             id="category"
             type="text"
             className="form-control"
           />
-          {/* what does htmlFor and input do?? */}
-          {errors.category?.type === "required" && (
-            <p className="text-danger">Please provide a category.</p>
-          )}
-          {errors.category?.type === "minLength" && (
-            <p className="text-danger">Please enter at least 2 characters.</p>
+          {/* QUESTION -- what does htmlFor and input do?? */}
+          {errors.category && (
+            <p className="text-danger">{errors.category.message}</p>
           )}
         </div>
-        <button className="btn btn-primary">Submit</button>
+        <button
+          // disabled={!isValid}
+          className="btn btn-primary"
+        >
+          Submit
+        </button>
       </form>
       <div>
         <h1>Expenses</h1>
