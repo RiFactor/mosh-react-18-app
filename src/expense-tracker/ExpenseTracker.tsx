@@ -3,6 +3,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChangeEvent, useState } from "react";
 
+// // ToDo:
+// 1. Get entry to add to array,
+// 2. Dropdown arrow (styling?)
+
 const minimumLength = 3;
 
 const schema = z.object({
@@ -161,6 +165,7 @@ const ExpenseTracker = () => {
         <h1>Expenses</h1>
 
         <select
+          className="dropdown-header"
           value={selectedExpenseCategory}
           onChange={(event) => {
             setSelectedExpenseCategory(event.target.value);
@@ -179,7 +184,6 @@ const ExpenseTracker = () => {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">Id - to remove</th>
               <th scope="col">Description</th>
               <th scope="col">Amount (£)</th>
               <th scope="col">Category</th>
@@ -196,7 +200,6 @@ const ExpenseTracker = () => {
               .map((expense: any, index: number) => {
                 return (
                   <tr key={index}>
-                    <th scope="row">{expense.id}</th>
                     <th scope="row">{expense.description}</th>
                     <td>{expense.amount}</td>
                     <td>{expense.category}</td>
@@ -212,8 +215,8 @@ const ExpenseTracker = () => {
                 );
               })}
             <tr>
-              Total
-              <th>{filteredList()}</th>
+              <th>Total</th>
+              <th>£ {filteredList()}</th>
             </tr>
           </tbody>
         </table>
