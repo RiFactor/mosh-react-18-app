@@ -28,8 +28,7 @@ const options = [
 type TExpense = z.infer<typeof schema>;
 
 const ExpenseTracker = () => {
-  const [selectedExpenseCategory, setSelectedExpenseCategory] =
-    useState("everything");
+  const [selectedExpenseCategory, setSelectedExpenseCategory] = useState("");
 
   const [expenses, setExpenses] = useState([
     {
@@ -52,17 +51,17 @@ const ExpenseTracker = () => {
     formState: { errors, isValid },
   } = useForm<TExpense>({ resolver: zodResolver(schema) });
 
-  console.log(register("category")); // should exist but will let you enter non-existent value
+  // console.log(register("category")); // should exist but will let you enter non-existent value
 
   const onSubmit = (data: FieldValues) => {
     setExpenses([
       ...expenses,
-      {
-        id: expenses.length + 1,
-        description: "item",
-        amount: 0.05,
-        category: "utilities",
-      },
+      // {
+      //   id: expenses.length + 1,
+      //   description: "item",
+      //   amount: 0.05,
+      //   category: "utilities",
+      // },
     ]);
     console.log(data, "submit data");
     console.log(expenses, "final expenses");
