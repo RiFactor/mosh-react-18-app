@@ -1,7 +1,7 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const minimumLength = 3;
 
@@ -28,6 +28,9 @@ const options = [
 type TExpense = z.infer<typeof schema>;
 
 const ExpenseTracker = () => {
+  const [selectedExpenseCategory, setSelectedExpenseCategory] =
+    useState("everything");
+
   const [expenses, setExpenses] = useState([
     {
       id: 1,
@@ -71,6 +74,10 @@ const ExpenseTracker = () => {
     setExpenses(expenses.filter((expense) => expense.id !== id));
     console.log(id);
   };
+
+  // const handleSelectedExpenseCategory = (event: HTMLSelectElement) => {
+  //   setSelectedExpenseCategory(event.target.value);
+  // };
 
   return (
     <>
@@ -136,12 +143,27 @@ const ExpenseTracker = () => {
       </form>
       <div>
         <h1>Expenses</h1>
+
+        <select
+          value={selectedExpenseCategory}
+          onChange={(event) => setSelectedExpenseCategory(event.target.value)}
+        >
+          <option>Everything</option>
+          {options.map((option) => {
+            return (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            );
+          })}
+        </select>
+
         <table className="table">
           <thead>
             <tr>
               <th scope="col">Id - to remove</th>
               <th scope="col">Description</th>
-              <th scope="col">Amount</th>
+              <th scope="col">Amount (£)</th>
               <th scope="col">Category</th>
               <th></th>
             </tr>
