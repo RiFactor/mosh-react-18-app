@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 interface IFormData {
-  // NTS: to improve dev experience to access error props & typesafety
+  // NTS: to improve dev experience for autocompletion e.g. 'errors.name' to access error props & typesafety
   name: string;
   age: number;
 }
@@ -60,7 +60,7 @@ const FormHook = () => {
         {errors.age?.type === "required" && (
           <p className="text-danger">Please provide an age.</p>
         )}
-        {/* // QUESTION -- why does only type need optional chaining and not errors? */}
+        {/* // QUESTION -- why does only type need optional chaining and not errors?b/c not checking if errors exists, but checking if name exists?? */}
       </div>
       <button className="btn btn-primary" type="submit">
         Submit

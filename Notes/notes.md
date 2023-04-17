@@ -336,6 +336,16 @@ value props of input fields always return string so need to convert to desired t
 
 <br/>
 
+## Techniques
+
+```Typescript
+const {
+    register,
+    handleSubmit,
+    formState: { errors }, // Nested destructuring
+  } = useForm<TExpense>();
+```
+
 ## Common Mistakes
 
 Check for brackets!
