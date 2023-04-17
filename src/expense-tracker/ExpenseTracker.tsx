@@ -139,7 +139,7 @@ const ExpenseTracker = () => {
           <select
             {...register("category")}
             id="category"
-            className="form-control"
+            className="form-select"
           >
             {options.map((option) => {
               return (
@@ -165,7 +165,7 @@ const ExpenseTracker = () => {
         <h1>Expenses</h1>
 
         <select
-          className="dropdown-header"
+          className="form-select"
           value={selectedExpenseCategory}
           onChange={(event) => {
             setSelectedExpenseCategory(event.target.value);
