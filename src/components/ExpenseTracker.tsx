@@ -1,57 +1,58 @@
-import { FormEvent, useRef, useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
 
 type TExpense = {
   description?: string; // QUESTION should these be optional?
   amount?: number;
-  category?: string; // TODO: to figure out how to make options!
+  category?: string; // ToDo: to figure out how to make options!
 };
 
 const ExpenseTracker = () => {
-  const [expense, setExpense] = useState<TExpense>({});
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TExpense>(); // QUESTION -- no obj, null, nothing passed in brackets here?
 
-  // const [expenses, setExpenses] = useState({
-  //   description: "test",
-  //   amount: 0,
-  //   category: "test", // ToDo preselected list?
-  // });
+  console.log(register("category")); // should exist but will let you enter non-existent value
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log("submitted expense tracker", expense);
-    // setExpenses([...expenses]);
+  const onSubmit = (data: FieldValues) => {
+    console.log(data);
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <h3>Expense Tracker</h3>
         <div className="mb-3">
           <label htmlFor="description" className="form-label">
             Description
           </label>
           <input
-            onChange={(event) => {
-              setExpense({ ...expense, description: event.target.value });
-            }}
-            value={expense.description || ""}
+            {...register("description", { required: true, minLength: 2 })}
             id="description"
             type="text"
             className="form-control"
           />
+          {errors.description?.type === "required" && (
+            <p className="text-danger">Please provide a description.</p>
+          )}
+          {errors.description?.type === "minLength" && (
+            <p className="text-danger">Please enter at least 2 characters.</p>
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="amount" className="form-label">
             Amount
           </label>
           <input
-            onChange={(event) => {
-              setExpense({ ...expense, amount: parseInt(event.target.value) });
-            }}
-            value={expense.amount || ""}
+            {...register("amount", { required: true })}
             id="amount"
             type="number"
             className="form-control"
           />
+          {errors.amount?.type === "required" && (
+            <p className="text-danger">Please provide an amount</p>
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="category" className="form-label">
@@ -59,19 +60,21 @@ const ExpenseTracker = () => {
           </label>
           {/* ToDo selection? */}
           <input
-            onChange={(event) => {
-              setExpense({ ...expense, category: event.target.value });
-            }}
-            value={expense.category || ""}
+            {...register("category", { required: true, minLength: 2 })}
             id="category"
             type="text"
             className="form-control"
           />
           {/* what does htmlFor and input do?? */}
+          {errors.category?.type === "required" && (
+            <p className="text-danger">Please provide a category.</p>
+          )}
+          {errors.category?.type === "minLength" && (
+            <p className="text-danger">Please enter at least 2 characters.</p>
+          )}
         </div>
         <button className="btn btn-primary">Submit</button>
       </form>
-
       <div>
         <h1>Expenses</h1>
         <table className="table">
