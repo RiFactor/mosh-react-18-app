@@ -19,6 +19,7 @@ import Form from "components/Forms/Form";
 import ControlledForm from "components/Forms/ControlledForm";
 import FormHook from "components/Forms/FormHook";
 import ZodForm from "components/Forms/ZodForm";
+import ExpenseTracker from "components/ExpenseTracker";
 
 const App = () => {
   const [cartItems, setCartItems] = useState(["shirt", "hat"]);
@@ -105,6 +106,7 @@ const App = () => {
       <ControlledForm />
       <FormHook />
       <ZodForm />
+      <ExpenseTracker />
     </div>
   );
 };
