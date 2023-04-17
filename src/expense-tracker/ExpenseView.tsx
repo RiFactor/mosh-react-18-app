@@ -4,13 +4,18 @@ import ExpenseList from "./ExpenseList";
 import ExpenseTracker from "./ExpenseTracker";
 
 const ExpenseView = () => {
+  const [selectedCategory, setSelectedCategory] = useState("");
+
   const [expenses, setExpenses] = useState([
     { id: 1, description: "games", amount: 5, category: "Entertainment" },
     { id: 2, description: "books", amount: 2, category: "Entertainment" },
-    { id: 3, description: "shampoo", amount: 4, category: "Toiletries" },
+    { id: 3, description: "bread", amount: 4, category: "Groceries" },
     { id: 4, description: "lightbulb", amount: 1, category: "Utilities" },
   ]);
 
+  const filteredExpenses = selectedCategory
+    ? expenses.filter((expense) => expense.category === selectedCategory) //  QUESTION why is filteredExpenses not a fn?
+    : expenses;
   const handleDelete = (id: number) => {
     setExpenses(expenses.filter((expense) => expense.id !== id));
   };
@@ -19,13 +24,18 @@ const ExpenseView = () => {
 
   return (
     <div>
-      <div className="m-3">
-        <ExpenseFilter />
+      <div className="mb-3">
+        <ExpenseFilter
+          onSelectCategory={(category) => setSelectedCategory(category)}
+        />
       </div>
-      <div className="m-3">
-        <ExpenseList expenses={expenses} onDelete={(id) => handleDelete(id)} />
+      <div className="mb-3">
+        <ExpenseList
+          expenses={filteredExpenses}
+          onDelete={(id) => handleDelete(id)}
+        />
       </div>
-      <div className="m-3">
+      <div className="mb-3">
         <ExpenseTracker />
       </div>
     </div>
