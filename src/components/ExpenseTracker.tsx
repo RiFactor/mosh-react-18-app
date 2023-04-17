@@ -14,22 +14,32 @@ const schema = z.object({
     .number({ invalid_type_error: "Number is required" }) // when empty string
     .min(0.01, { message: "Amount must be at least £0.01." })
     .nonnegative({ message: "Amount cannot be negative." }),
-  category: z
-    // ToDo: to figure out how to make options!; zod enum
-    .string()
-    .min(minimumLength, { message: "Please enter at least 2 characters." }),
+  category: z.enum(["groceries", "utilities", "toiletries"]), // ToDo get a drop down list
 });
 
 // const required?
+
+const options = [
+  { value: "groceries", label: "Groceries" },
+  { value: "utilities", label: "Utilities" },
+  { value: "toiletries", label: "Toiletries" },
+];
 
 type TExpense = z.infer<typeof schema>;
 
 const ExpenseTracker = () => {
   const [expenses, setExpenses] = useState([
     {
+      id: 1,
       description: "test",
-      amount: "2",
+      amount: 1,
       category: "groceries",
+    },
+    {
+      id: 2,
+      description: "test2",
+      amount: 2,
+      category: "utilities",
     },
   ]); // want an aray of objects
 
@@ -42,7 +52,24 @@ const ExpenseTracker = () => {
   console.log(register("category")); // should exist but will let you enter non-existent value
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
+    setExpenses([
+      ...expenses,
+      {
+        id: expenses.length + 1,
+        description: "item",
+        amount: 0.05,
+        category: "utilities",
+      },
+    ]);
+    console.log(data, "submit data");
+    console.log(expenses, "final expenses");
+  };
+
+  const handleDelete = (id: number) => {
+    console.log(expenses);
+
+    setExpenses(expenses.filter((expense) => expense.id !== id));
+    console.log(id);
   };
 
   return (
@@ -82,12 +109,19 @@ const ExpenseTracker = () => {
             Category
           </label>
           {/* ToDo selection? */}
-          <input
+          <select
             {...register("category")}
             id="category"
-            type="text"
             className="form-control"
-          />
+          >
+            {options.map((option) => {
+              return (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              );
+            })}
+          </select>
           {/* QUESTION -- what does htmlFor and input do?? */}
           {errors.category && (
             <p className="text-danger">{errors.category.message}</p>
@@ -105,22 +139,33 @@ const ExpenseTracker = () => {
         <table className="table">
           <thead>
             <tr>
+              <th scope="col">Id - to remove</th>
               <th scope="col">Description</th>
               <th scope="col">Amount</th>
               <th scope="col">Category</th>
+              <th></th>
             </tr>
           </thead>
-          {/* <tbody>
+          <tbody>
             {expenses.map((expense: any, index: number) => {
               return (
                 <tr key={index}>
+                  <th scope="row">{expense.id}</th>
                   <th scope="row">{expense.description}</th>
                   <td>{expense.amount}</td>
                   <td>{expense.category}</td>
+                  <td>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleDelete(expense.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               );
             })}
-          </tbody> */}
+          </tbody>
         </table>
       </div>
     </>
