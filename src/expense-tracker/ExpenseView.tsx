@@ -2,6 +2,9 @@ import { useState } from "react";
 import ExpenseFilter from "./ExpenseFilter";
 import ExpenseList from "./ExpenseList";
 import ExpenseTracker from "./ExpenseTracker";
+import ExpenseForm from "./ExpenseForm";
+
+export const categories = ["Groceries", "Utilities", "Entertainment"];
 
 const ExpenseView = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -25,6 +28,9 @@ const ExpenseView = () => {
   return (
     <div>
       <h1>Expense View - Mosh</h1>
+      <div className="mb-3">
+        <ExpenseForm />
+      </div>
       <div className="mb-3">
         <ExpenseFilter
           onSelectCategory={(category) => setSelectedCategory(category)}
