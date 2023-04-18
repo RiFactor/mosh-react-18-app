@@ -35,9 +35,6 @@ const ExpenseView = () => {
           onDelete={(id) => handleDelete(id)}
         />
       </div>
-      <div className="mb-3">
-        <ExpenseTracker />
-      </div>
     </div>
   );
 };

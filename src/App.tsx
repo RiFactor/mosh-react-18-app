@@ -19,7 +19,9 @@ import Form from "components/Forms/Form";
 import ControlledForm from "components/Forms/ControlledForm";
 import FormHook from "components/Forms/FormHook";
 import ZodForm from "components/Forms/ZodForm";
-import ExpenseTracker from "components/ExpenseTracker";
+import ExpenseTracker from "expense-tracker/ExpenseTracker";
+import ExpenseDisplay from "expense-tracker-practise/ExpenseDisplay";
+import ExpenseView from "expense-tracker/ExpenseView";
 
 const App = () => {
   const [cartItems, setCartItems] = useState(["shirt", "hat"]);
@@ -58,7 +60,7 @@ const App = () => {
 
   return (
     <div>
-      <NavBar count={cartItems.length} />
+      {/* <NavBar count={cartItems.length} />
       <ShoppingCart items={cartItems} onClick={handleClear} />
       <ListGroup
         items={cities}
@@ -105,7 +107,12 @@ const App = () => {
       <Form />
       <ControlledForm />
       <FormHook />
-      <ZodForm />
+      <ZodForm /> */}
+      <h1>Mosh</h1>
+      <ExpenseView />
+      <h1>Second Attempt</h1>
+      <ExpenseDisplay />
+      <h1>First Attempt</h1>
       <ExpenseTracker />
     </div>
   );
