@@ -24,6 +24,7 @@ const ExpenseView = () => {
 
   return (
     <div>
+      <h1>Expense View - Mosh</h1>
       <div className="mb-3">
         <ExpenseFilter
           onSelectCategory={(category) => setSelectedCategory(category)}

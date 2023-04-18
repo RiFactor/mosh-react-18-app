@@ -102,7 +102,7 @@ const ExpenseTracker = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h3>Expense Tracker</h3>
+        <h3>Expense Tracker - First Attempt</h3>
         <div className="mb-3">
           <label htmlFor="description" className="form-label">
             Description
