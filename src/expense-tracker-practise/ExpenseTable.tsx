@@ -10,11 +10,9 @@ interface IProps {
   onDelete: (id: number) => void;
 }
 
-const ExpenseTable = ({
-  expenses,
-  selectedExpenseCategory,
-  onDelete,
-}: IProps) => {
+const ExpenseTable = ({ expenses, onDelete }: IProps) => {
+  const total = expenses.reduce((acc, expense) => expense.amount + acc, 0);
+
   return (
     <table className="table">
       <thead>
@@ -26,33 +24,26 @@ const ExpenseTable = ({
         </tr>
       </thead>
       <tbody>
-        {expenses
-          .filter((expense) =>
-            // QUESTION - help w/ error (gone after reload?)
-            selectedExpenseCategory === ""
-              ? expense
-              : expense.category === selectedExpenseCategory
-          )
-          .map((expense: any, index: number) => {
-            return (
-              <tr key={index}>
-                <th scope="row">{expense.description}</th>
-                <td>{expense.amount}</td>
-                <td>{expense.category}</td>
-                <td>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => onDelete(expense.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+        {expenses.map((expense: any, index: number) => {
+          return (
+            <tr key={index}>
+              <th scope="row">{expense.description}</th>
+              <td>{expense.amount}</td>
+              <td>{expense.category}</td>
+              <td>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => onDelete(expense.id)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          );
+        })}
         <tr>
           <th>Total</th>
-          {/* <th>£ {filteredList()}</th> */}
+          <th>{total}</th>
         </tr>
       </tbody>
     </table>

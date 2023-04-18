@@ -101,13 +101,13 @@ const ExpenseTracker = () => {
   };
 
   const filteredExpenses = selectedExpenseCategory
-    ? expenses.filter((expense) => expense.category !== selectedExpenseCategory)
+    ? expenses.filter((expense) => expense.category === selectedExpenseCategory)
     : expenses;
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h3>Expense Tracker</h3>
+        <h1>Expense Display - Second Practise</h1>
         <div className="mb-3">
           <label htmlFor="description" className="form-label">
             Description
@@ -167,7 +167,7 @@ const ExpenseTracker = () => {
         </button>
       </form>
       <div>
-        <h1>Expenses</h1>
+        <h3>Expenses</h3>
 
         <select
           className="form-select"
@@ -186,7 +186,7 @@ const ExpenseTracker = () => {
           })}
         </select>
         <ExpenseTable
-          expenses={expenses}
+          expenses={filteredExpenses}
           selectedExpenseCategory={selectedExpenseCategory}
           onDelete={(id) => handleDelete(id)}
           // filteredList={filteredList}
