@@ -1,8 +1,10 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import ExpenseTable from "./ExpenseTable";
+import ExpenseSelect from "./ExpenseSelect";
+import categories from "expense-tracker/Categories";
 
 // // ToDo:
 // 1. Get entry to add to array,
@@ -24,12 +26,6 @@ const schema = z.object({
 
 // const required?
 
-const options = [
-  { value: "groceries", label: "Groceries" },
-  { value: "utilities", label: "Utilities" },
-  { value: "toiletries", label: "Toiletries" },
-];
-
 type TExpense = z.infer<typeof schema>;
 
 const ExpenseTracker = () => {
@@ -40,13 +36,13 @@ const ExpenseTracker = () => {
       id: 1,
       description: "test",
       amount: 1,
-      category: "groceries",
+      category: "Groceries",
     },
     {
       id: 2,
       description: "test2",
       amount: 2,
-      category: "utilities",
+      category: "Utilities",
     },
   ]); // want an aray of objects
 
@@ -82,23 +78,6 @@ const ExpenseTracker = () => {
   // const handleSelectedExpenseCategory = (event: HTMLSelectElement) => {
   //   setSelectedExpenseCategory(event.target.value);
   // };
-
-  const filteredList = () => {
-    const filteredExpenses = expenses.filter((expense) =>
-      selectedExpenseCategory === ""
-        ? expense
-        : expense.category === selectedExpenseCategory
-    );
-
-    let amount = 0;
-
-    filteredExpenses.map((expense) => {
-      amount += expense.amount;
-    });
-
-    console.log(filteredExpenses);
-    return amount;
-  };
 
   const filteredExpenses = selectedExpenseCategory
     ? expenses.filter((expense) => expense.category === selectedExpenseCategory)
@@ -146,10 +125,11 @@ const ExpenseTracker = () => {
             id="category"
             className="form-select"
           >
-            {options.map((option) => {
+            <option value="">All Categories</option>
+            {categories.map((category) => {
               return (
-                <option key={option.value} value={option.value}>
-                  {option.label}
+                <option key={category} value={category}>
+                  {category}
                 </option>
               );
             })}
@@ -169,27 +149,19 @@ const ExpenseTracker = () => {
       <div>
         <h3>Expenses</h3>
 
-        <select
-          className="form-select"
-          value={selectedExpenseCategory}
-          onChange={(event) => {
-            setSelectedExpenseCategory(event.target.value);
-          }}
-        >
-          <option value="">Everything</option>
-          {options.map((option) => {
-            return (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            );
-          })}
-        </select>
+        <div className="mb-3">
+          <ExpenseSelect
+            selectedExpenseCategory={selectedExpenseCategory}
+            onSelect={(selectedExpenseCategory) =>
+              setSelectedExpenseCategory(selectedExpenseCategory)
+            }
+          />
+        </div>
+
         <ExpenseTable
           expenses={filteredExpenses}
           selectedExpenseCategory={selectedExpenseCategory}
           onDelete={(id) => handleDelete(id)}
-          // filteredList={filteredList}
         />
       </div>
     </>
