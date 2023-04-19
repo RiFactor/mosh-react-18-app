@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ExpenseFilter from "./ExpenseFilter";
 import ExpenseList from "./ExpenseList";
-import ExpenseTracker from "./ExpenseTracker";
 import ExpenseForm from "./ExpenseForm";
 // Diff - haven't imported categories here
 
@@ -11,10 +10,10 @@ const ExpenseView = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   const [expenses, setExpenses] = useState([
-    { id: 1, description: "games", amount: 5, category: "Entertainment" },
-    { id: 2, description: "books", amount: 2, category: "Entertainment" },
-    { id: 3, description: "bread", amount: 4, category: "Groceries" },
-    { id: 4, description: "lightbulb", amount: 1, category: "Utilities" },
+    { id: 1, description: "Games", amount: 5, category: "Entertainment" },
+    { id: 2, description: "Books", amount: 2, category: "Entertainment" },
+    { id: 3, description: "Bread", amount: 4, category: "Groceries" },
+    { id: 4, description: "Lightbulb", amount: 1, category: "Utilities" },
   ]);
 
   const filteredExpenses = selectedCategory

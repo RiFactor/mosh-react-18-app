@@ -198,6 +198,7 @@ const ExpenseTracker = () => {
                   : expense.category === selectedExpenseCategory
               )
               .map((expense: any, index: number) => {
+                // ToDo appropriate type
                 return (
                   <tr key={index}>
                     <th scope="row">{expense.description}</th>

@@ -25,6 +25,7 @@ const ExpenseTable = ({ expenses, onDelete }: IProps) => {
       </thead>
       <tbody>
         {expenses.map((expense: any, index: number) => {
+          // ToDo type
           return (
             <tr key={index}>
               <th scope="row">{expense.description}</th>

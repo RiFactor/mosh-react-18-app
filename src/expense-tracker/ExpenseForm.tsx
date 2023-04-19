@@ -8,7 +8,7 @@ const validationLimits = {
   maxLength: 50,
   minValue: 0.01,
   maxValue: 100_000, // separate for readability
-};
+}; // QUESTION -- is this ok to put all in an obj or messy (& real-world, would this come from the server)
 
 const schema = z.object({
   description: z
@@ -50,8 +50,7 @@ const ExpenseForm = ({ onSubmit }: IProps) => {
 
   return (
     <form
-      onSubmit=// {handleSubmit(onSubmit)} // QUESTION -- why can this just work without passing data
-      {handleSubmit((data) => {
+      onSubmit={handleSubmit((data) => { // {handleSubmit(onSubmit)} // QUESTION -- why can this just work without passing data
         onSubmit(data);
         reset();
       })}

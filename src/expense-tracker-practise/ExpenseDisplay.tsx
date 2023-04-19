@@ -1,13 +1,7 @@
-import { FieldValues } from "react-hook-form";
 import { useState } from "react";
 import ExpenseTable from "./ExpenseTable";
 import ExpenseSelect from "./ExpenseSelect";
-import categories from "expense-tracker/Categories";
 import ExpenseFormHook from "./ExpenseFormHook";
-
-// // ToDo:
-// 1. Get entry to add to array,
-// 2. Dropdown arrow (styling?)
 
 const ExpenseTracker = () => {
   const [selectedExpenseCategory, setSelectedExpenseCategory] = useState("");
@@ -30,6 +24,7 @@ const ExpenseTracker = () => {
   // console.log(register("category")); // should exist but will let you enter non-existent value
 
   const onSubmit = (expense: any) => {
+    // ToDo Type
     setExpenses([...expenses, { ...expense, id: expenses.length + 1 }]);
   };
 
@@ -51,18 +46,16 @@ const ExpenseTracker = () => {
   return (
     <>
       <ExpenseFormHook onSubmit={onSubmit} />
-      <div>
-        <h3>Expenses</h3>
-
-        <div className="mb-3">
-          <ExpenseSelect
-            selectedExpenseCategory={selectedExpenseCategory}
-            onSelect={(selectedExpenseCategory) =>
-              setSelectedExpenseCategory(selectedExpenseCategory)
-            }
-          />
-        </div>
-
+      <h3 className="mb-3">Expenses</h3>
+      <div className="mb-3">
+        <ExpenseSelect
+          selectedExpenseCategory={selectedExpenseCategory}
+          onSelect={(selectedExpenseCategory) =>
+            setSelectedExpenseCategory(selectedExpenseCategory)
+          }
+        />
+      </div>
+      <div className="mb-3">
         <ExpenseTable
           expenses={filteredExpenses}
           selectedExpenseCategory={selectedExpenseCategory}
