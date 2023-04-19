@@ -108,11 +108,8 @@ const App = () => {
       <ControlledForm />
       <FormHook />
       <ZodForm /> */}
-      <h1>Mosh</h1>
       <ExpenseView />
-      <h1>Second Attempt</h1>
       <ExpenseDisplay />
-      <h1>First Attempt</h1>
       <ExpenseTracker />
     </div>
   );
