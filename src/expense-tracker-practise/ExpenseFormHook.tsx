@@ -2,6 +2,7 @@ import categories from "expense-tracker/Categories";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import Select from "utils/Select";
 
 const minLength = 3;
 const maxLength = 20;
@@ -79,25 +80,14 @@ const ExpenseFormHook = ({ onSubmit }: IProps) => {
           <p className="text-danger">{errors.amount.message}</p>
         )}
       </div>
+      {/* QUESTION -- what does htmlFor and input do?? */}
       <div className="mb-3">
-        <label htmlFor="category" className="form-label">
-          Category
-        </label>
-        <select {...register("category")} id="category" className="form-select">
-          <option value=""></option>
-          {categories.map((category) => {
-            return (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            );
-          })}
-          {/* ToDo export select component? */}
-        </select>
-        {/* QUESTION -- what does htmlFor and input do?? */}
-        {errors.category && (
-          <p className="text-danger">{errors.category.message}</p>
-        )}
+        <Select
+          errors={errors}
+          register={register}
+          title="category"
+          options={categories}
+        />
       </div>
       <button
         // disabled={!isValid}
