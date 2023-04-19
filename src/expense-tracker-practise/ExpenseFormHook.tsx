@@ -3,6 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import Select from "utils/Select";
+import Input from "utils/Input";
 
 const minLength = 3;
 const maxLength = 20;
@@ -51,44 +52,24 @@ const ExpenseFormHook = ({ onSubmit }: IProps) => {
       })}
     >
       <h1>Expense Display - Second Practise</h1>
-      <div className="mb-3">
-        <label htmlFor="description" className="form-label">
-          Description
-        </label>
-        <input
-          {...register("description")} // QUESTION -- what does register do?? Does it replace value & onChange for React?
-          id="description"
-          type="text"
-          className="form-control"
-        />
-        {errors.description && (
-          <p className="text-danger">{errors.description.message}</p>
-        )}
-      </div>
-      {/* QUESTION -- Can these be extracted to components for ease?? */}
-      <div className="mb-3">
-        <label htmlFor="amount" className="form-label">
-          Amount
-        </label>
-        <input
-          {...register("amount", { valueAsNumber: true })}
-          id="amount"
-          type="number"
-          className="form-control"
-        />
-        {errors.amount && (
-          <p className="text-danger">{errors.amount.message}</p>
-        )}
-      </div>
-      {/* QUESTION -- what does htmlFor and input do?? */}
-      <div className="mb-3">
-        <Select
-          errors={errors}
-          register={register}
-          title="category"
-          options={categories}
-        />
-      </div>
+      <Input
+        register={register}
+        errors={errors.description}
+        title="description"
+      />
+      <Input
+        register={register}
+        errors={errors.amount}
+        title="amount"
+        isNumber={true}
+      />
+
+      <Select
+        errors={errors}
+        register={register}
+        title="category"
+        options={categories}
+      />
       <button
         // disabled={!isValid}
         className="btn btn-primary"

@@ -40,11 +40,10 @@ interface IProps {
 
 const Select = ({ register, errors, options, title }: IProps) => {
   return (
-    <div>
+    <div className="mb-3">
       <label htmlFor={title} className="form-label">
         {title.charAt(0).toUpperCase() + title.slice(1)}
       </label>
-
       <select {...register(title)} id={title} className="form-select">
         <option value=""></option>
         {options.map((option) => {
@@ -54,7 +53,6 @@ const Select = ({ register, errors, options, title }: IProps) => {
             </option>
           );
         })}
-        {/* ToDo export select component? */}
       </select>
       {errors.category && (
         <p className="text-danger">{errors.category.message}</p>
