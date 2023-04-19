@@ -2,17 +2,19 @@ import categories from "expense-tracker/Categories";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import Select from "utils/Select";
-import Input from "utils/Input";
+import Select from "components/FormItems/Select";
+import Input from "components/FormItems/Input";
 
-const minLength = 3;
+const minLength = 2;
 const maxLength = 20;
 
 const schema = z.object({
   description: z
     .string()
     .nonempty({ message: "Please provide a description." }) // should this be in?
-    .min(minLength, { message: "Please enter at least 2 characters." })
+    .min(minLength, {
+      message: `Please enter at least ${minLength} characters.`,
+    })
     .max(maxLength, {
       message: `Description cannot exceed ${maxLength} characters.`,
     }),
