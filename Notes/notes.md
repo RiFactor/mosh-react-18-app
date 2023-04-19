@@ -342,6 +342,12 @@ Can be called multiple times.
 
 called after each render: local storage, DOm ele,ent, server anything that is impure - affects the DOM
 
+Second argument of useEffect - Dependency Array:
+
+- No dependency array - will execute useEffect after every render (infinite loop if updating state)
+- [] React will only execute the useEffect hook once after the first render - never again
+- [props, state var] will run everytime these change
+
 </details>
 
 <details>
