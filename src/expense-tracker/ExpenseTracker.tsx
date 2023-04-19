@@ -181,7 +181,7 @@ const ExpenseTracker = () => {
           })}
         </select>
 
-        <table className="table">
+        <table className="table table-bordered">
           <thead>
             <tr>
               <th scope="col">Description</th>

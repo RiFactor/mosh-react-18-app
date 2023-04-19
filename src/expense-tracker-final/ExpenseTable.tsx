@@ -14,7 +14,7 @@ const ExpenseTable = ({ expenses, onDelete }: IProps) => {
   const total = expenses.reduce((acc, expense) => expense.amount + acc, 0);
 
   return (
-    <table className="table">
+    <table className="table table-bordered">
       <thead>
         <tr>
           <th scope="col">Description</th>
@@ -45,6 +45,8 @@ const ExpenseTable = ({ expenses, onDelete }: IProps) => {
         <tr>
           <th>Total</th>
           <th>{total}</th>
+          <th></th>
+          <th></th>
         </tr>
       </tbody>
     </table>
