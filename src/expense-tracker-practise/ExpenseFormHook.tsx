@@ -3,23 +3,32 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-const minimumLength = 3;
+const minLength = 3;
+const maxLength = 20;
 
 const schema = z.object({
   description: z
     .string()
     .nonempty({ message: "Please provide a description." }) // should this be in?
-    .min(minimumLength, { message: "Please enter at least 2 characters." }),
+    .min(minLength, { message: "Please enter at least 2 characters." })
+    .max(maxLength, {
+      message: `Description cannot exceed ${maxLength} characters.`,
+    }),
   amount: z
     .number({ invalid_type_error: "Number is required" }) // when empty string
     .min(0.01, { message: "Amount must be at least £0.01." })
-    .nonnegative({ message: "Amount cannot be negative." }),
-  category: z.enum(categories), // ToDo get a drop down list
+    .nonnegative({ message: "Amount cannot be negative." })
+    .max(1_000),
+  category: z.enum(categories, {
+    errorMap: () => ({
+      message: "Category cannot be empty",
+    }),
+  }),
 });
 
 // const required?
 
-type TExpense = z.infer<typeof schema>;
+type TExpense = z.infer<typeof schema>; // QUESTION -- should it be TExpenseFormData or is this name ok?
 
 interface IProps {
   onSubmit: (expense: TExpense) => void;
@@ -46,7 +55,7 @@ const ExpenseFormHook = ({ onSubmit }: IProps) => {
           Description
         </label>
         <input
-          {...register("description")}
+          {...register("description")} // QUESTION -- what does register do?? Does it replace value & onChange for React?
           id="description"
           type="text"
           className="form-control"
@@ -55,6 +64,7 @@ const ExpenseFormHook = ({ onSubmit }: IProps) => {
           <p className="text-danger">{errors.description.message}</p>
         )}
       </div>
+      {/* QUESTION -- Can these be extracted to components for ease?? */}
       <div className="mb-3">
         <label htmlFor="amount" className="form-label">
           Amount
@@ -73,7 +83,6 @@ const ExpenseFormHook = ({ onSubmit }: IProps) => {
         <label htmlFor="category" className="form-label">
           Category
         </label>
-        {/* ToDo selection? */}
         <select {...register("category")} id="category" className="form-select">
           <option value=""></option>
           {categories.map((category) => {
@@ -83,6 +92,7 @@ const ExpenseFormHook = ({ onSubmit }: IProps) => {
               </option>
             );
           })}
+          {/* ToDo export select component? */}
         </select>
         {/* QUESTION -- what does htmlFor and input do?? */}
         {errors.category && (
