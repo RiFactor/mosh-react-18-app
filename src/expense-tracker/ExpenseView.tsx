@@ -26,11 +26,15 @@ const ExpenseView = () => {
 
   if (expenses.length === 0) return null;
 
+  const handleSubmit = (expense: any) => {
+    setExpenses([...expenses, { ...expense, id: expenses.length + 1 }]);
+  };
+
   return (
     <div>
       <h1>Expense View - Mosh</h1>
       <div className="mb-3">
-        <ExpenseForm />
+        <ExpenseForm onSubmit={handleSubmit} />
       </div>
       <div className="mb-3">
         <ExpenseFilter

@@ -36,15 +36,27 @@ const schema = z.object({
 
 type TExpenseFormData = z.infer<typeof schema>;
 
-const ExpenseForm = () => {
+interface IProps {
+  onSubmit: (data: TExpenseFormData) => void;
+}
+
+const ExpenseForm = ({ onSubmit }: IProps) => {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<TExpenseFormData>({ resolver: zodResolver(schema) });
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))} className="mb-3">
+    <form
+      onSubmit=// {handleSubmit(onSubmit)} // QUESTION -- why can this just work without passing data
+      {handleSubmit((data) => {
+        onSubmit(data);
+        reset();
+      })}
+      className="mb-3"
+    >
       <div className="mb-3">
         <label htmlFor="descriptiom" className="form-label">
           Description
