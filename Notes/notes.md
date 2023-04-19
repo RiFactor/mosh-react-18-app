@@ -326,6 +326,22 @@ value props of input fields always return string so need to convert to desired t
 <summary> Connecting To The Backend ...
 </summary>
 
+React Components should be pure - no side effects.
+Must keep changes outside the render phase.
+
+Side effects (nothing to do w/ returning JSX markup), changing something outside of the component
+
+- Store data in local storage
+- Call the server to fetch / save data
+- Manually modify the DOM, changing state of DOM
+
+Implementing side effects will make component impure, therefore execute code AFTER the component is rendered -> useEffect
+
+Must be called at the top level of the component as with ref and state.
+Can be called multiple times.
+
+called after each render: local storage, DOm ele,ent, server anything that is impure - affects the DOM
+
 </details>
 
 <details>

@@ -22,6 +22,7 @@ import ZodForm from "components/Forms/ZodForm";
 import ExpenseTracker from "expense-tracker/ExpenseTracker";
 import ExpenseDisplay from "expense-tracker-final/ExpenseDisplay";
 import ExpenseView from "expense-tracker/ExpenseView";
+import ConnectingToTheBackend from "components/ConnectingToTheBackend";
 
 const App = () => {
   const [cartItems, setCartItems] = useState(["shirt", "hat"]);
@@ -109,8 +110,9 @@ const App = () => {
       <FormHook />
       <ZodForm /> */}
       {/* <ExpenseView /> */}
-      <ExpenseDisplay />
-      <ExpenseTracker />
+      {/* <ExpenseDisplay />
+      <ExpenseTracker /> */}
+      <ConnectingToTheBackend />
     </div>
   );
 };
