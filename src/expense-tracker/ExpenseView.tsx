@@ -3,8 +3,9 @@ import ExpenseFilter from "./ExpenseFilter";
 import ExpenseList from "./ExpenseList";
 import ExpenseTracker from "./ExpenseTracker";
 import ExpenseForm from "./ExpenseForm";
+// Diff - haven't imported categories here
 
-export const categories = ["Groceries", "Utilities", "Entertainment"];
+// export const categories = ["Groceries", "Utilities", "Entertainment"] as const; // make it read-only
 
 const ExpenseView = () => {
   const [selectedCategory, setSelectedCategory] = useState("");

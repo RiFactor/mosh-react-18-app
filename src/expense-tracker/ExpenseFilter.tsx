@@ -1,4 +1,4 @@
-import { categories } from "./ExpenseView";
+import categories from "./Categories";
 
 interface IProps {
   onSelectCategory: (category: string) => void;
