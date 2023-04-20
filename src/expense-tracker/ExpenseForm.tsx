@@ -2,6 +2,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import categories from "./Categories";
+import { useId } from "react";
 
 const validationLimits = {
   minLength: 3,
@@ -48,6 +49,8 @@ const ExpenseForm = ({ onSubmit }: IProps) => {
     formState: { errors },
   } = useForm<TExpenseFormData>({ resolver: zodResolver(schema) });
 
+  const id = useId();
+
   return (
     <form
       onSubmit={handleSubmit((data) => {
@@ -58,12 +61,12 @@ const ExpenseForm = ({ onSubmit }: IProps) => {
       className="mb-3"
     >
       <div className="mb-3">
-        <label htmlFor="description" className="form-label">
+        <label htmlFor={"description" + id} className="form-label">
           Description
         </label>
         <input
           {...register("description")}
-          id="description"
+          id={"description" + id}
           type="text"
           className="form-control"
         />
@@ -72,12 +75,12 @@ const ExpenseForm = ({ onSubmit }: IProps) => {
         )}
       </div>
       <div className="mb-3">
-        <label htmlFor="amount" className="form-label">
+        <label htmlFor={"amount" + id} className="form-label">
           Amount
         </label>
         <input
           {...register("amount", { valueAsNumber: true })}
-          id="amount"
+          id={"amount" + id}
           type="number"
           className="form-control"
         />
