@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, CanceledError } from "axios";
 
 // basic QUESTION -- okay to use type? (Mosh used interface); why does type need = {}, interface only needs {}
 type TUsers = {
@@ -12,33 +12,39 @@ const FetchingDataAxios = () => {
   const [users, setUsers] = useState<TUsers[]>([]); // NTS: must remember array here
   const [errors, setErrors] = useState("");
 
-  // useEffect(() => {
-  //   axios
-  //     .get<TUsers[]>("https://jsonplaceholder.typicode.com/users") //incorrect end point to demo error; NTS: must remember array here
-  //     .then((res) => setUsers(res.data))
-  //     .catch((error) => {
-  //       console.log(error);
-  //       setErrors(error.message);
-  //     });
-  // }, []);
-
-  // Alternate Method
   useEffect(() => {
-    const fetchUsers = async () => {
-      // 1. wrap in async fn
-      try {
-        //2. try-catch block
-        const res = await axios.get<TUsers[]>(
-          "https://jsonplaceholder.typicode.com/users"
-        );
-        setUsers(res.data);
-      } catch (error) {
-        setErrors((error as AxiosError).message); // 3. type assertion
-      }
-    };
+    const controller = new AbortController();
 
-    fetchUsers();
+    axios
+      .get<TUsers[]>("https://jsonplaceholder.typicode.com/users", {
+        signal: controller.signal,
+      }) //incorrect end point to demo error; NTS: must remember array here
+      .then((res) => setUsers(res.data))
+      .catch((error) => {
+        if (error instanceof CanceledError) return;
+        console.log(error);
+        setErrors(error.message);
+      });
+
+    return () => controller.abort();
   }, []);
+
+  // // Alternate Method
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     // 1. wrap in async fn
+  //     try {
+  //       //2. try-catch block
+  //       const res = await axios.get<TUsers[]>(
+  //         "https://jsonplaceholder.typicode.com/users"
+  //       );
+  //       setUsers(res.data);
+  //     } catch (error) {
+  //       setErrors((error as AxiosError).message); // 3. type assertion
+  //     }
+  //   };
+  //   fetchUsers();
+  // }, []);
 
   return (
     <div>
