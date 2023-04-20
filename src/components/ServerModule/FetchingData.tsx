@@ -38,7 +38,7 @@ const FetchingData = () => {
       <ul>
         {users.map((user) => (
           <li key={user.id}>{user.name}</li>
-          //   // basic QUESTION: TS prevents display of undefined properties
+          //   // basic QUESTION: TS prevents display of undefined properties e.g. username?
         ))}
       </ul>
     </div>
