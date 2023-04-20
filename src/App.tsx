@@ -111,9 +111,9 @@ const App = () => {
       <ControlledForm />
       <FormHook />
       <ZodForm /> */}
-      {/* <ExpenseView /> */}
-      {/* <ExpenseDisplay />
-      <ExpenseTracker /> */}
+      <ExpenseView />
+      <ExpenseDisplay />
+      <ExpenseTracker />
       <ConnectingToTheBackend />
       <ProductDisplay />
     </div>

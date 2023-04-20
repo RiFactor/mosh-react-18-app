@@ -50,14 +50,15 @@ const ExpenseForm = ({ onSubmit }: IProps) => {
 
   return (
     <form
-      onSubmit={handleSubmit((data) => { // {handleSubmit(onSubmit)} // QUESTION -- why can this just work without passing data
+      onSubmit={handleSubmit((data) => {
+        // {handleSubmit(onSubmit)} // QUESTION -- why can this just work without passing data
         onSubmit(data);
         reset();
       })}
       className="mb-3"
     >
       <div className="mb-3">
-        <label htmlFor="descriptiom" className="form-label">
+        <label htmlFor="description" className="form-label">
           Description
         </label>
         <input

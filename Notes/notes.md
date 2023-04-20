@@ -326,6 +326,10 @@ value props of input fields always return string so need to convert to desired t
 <summary> Connecting To The Backend ...
 </summary>
 
+## Server
+
+### Effect Hook
+
 React Components should be pure - no side effects.
 Must keep changes outside the render phase.
 
@@ -342,11 +346,23 @@ Can be called multiple times.
 
 called after each render: local storage, DOm ele,ent, server anything that is impure - affects the DOM
 
+### Effect Dependencies
+
 Second argument of useEffect - Dependency Array:
 
 - No dependency array - will execute useEffect after every render (infinite loop if updating state)
-- [] React will only execute the useEffect hook once after the first render - never again
+- [] React will only execute the useEffect hook once after the component's first render - never again
 - [props, state var] will run everytime these change
+
+### Effect Clean Up
+
+Optionally return a function to clean up:
+
+- Fn passed in Effect can optionally return fn for cleaning up
+- undo what effect was doing
+  connect --> disconnect
+  show modal --> hide modal
+  fetching server data --> abort fetch / ignore result
 
 </details>
 
