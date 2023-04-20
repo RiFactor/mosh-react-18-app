@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 // basic QUESTION -- okay to use type? (Mosh used interface); why does type need = {}, interface only needs {}
 type TUsers = {
@@ -12,14 +12,32 @@ const FetchingDataAxios = () => {
   const [users, setUsers] = useState<TUsers[]>([]); // NTS: must remember array here
   const [errors, setErrors] = useState("");
 
+  // useEffect(() => {
+  //   axios
+  //     .get<TUsers[]>("https://jsonplaceholder.typicode.com/users") //incorrect end point to demo error; NTS: must remember array here
+  //     .then((res) => setUsers(res.data))
+  //     .catch((error) => {
+  //       console.log(error);
+  //       setErrors(error.message);
+  //     });
+  // }, []);
+
+  // Alternate Method
   useEffect(() => {
-    axios
-      .get<TUsers[]>("https://jsonplaceholder.typicode.com/xusers") //incorrect end point to demo error; NTS: must remember array here
-      .then((res) => setUsers(res.data))
-      .catch((error) => {
-        console.log(error);
-        setErrors(error.message);
-      });
+    const fetchUsers = async () => {
+      // 1. wrap in async fn
+      try {
+        //2. try-catch block
+        const res = await axios.get<TUsers[]>(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        setUsers(res.data);
+      } catch (error) {
+        setErrors((error as AxiosError).message); // 3. type assertion
+      }
+    };
+
+    fetchUsers();
   }, []);
 
   return (
