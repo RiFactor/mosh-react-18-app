@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useRef, useState } from "react";
+import getUserData from "./getUserData";
 
 // basic QUESTION -- okay to use type? (Mosh used interface); why does type need = {}, interface only needs {}
 type TUsers = {
@@ -10,16 +10,31 @@ type TUsers = {
 
 const FetchingData = () => {
   const [users, setUsers] = useState<TUsers[]>([]); // NTS: must remember array here
+  const isFetchingRef = useRef(false);
 
   useEffect(() => {
-    axios
-      .get<TUsers[]>("https://jsonplaceholder.typicode.com/users") // NTS: must remember array here
-      .then((res) => setUsers(res.data));
+    async function fetchData() {
+      if (isFetchingRef.current) {
+        return;
+      }
+
+      isFetchingRef.current = true;
+
+      try {
+        const data = await getUserData();
+        setUsers(data);
+      } catch (error) {
+        console.log("fetching user error", error);
+      }
+      isFetchingRef.current = false; // QUESTION - second render still happening
+    }
+    fetchData();
+    console.log("Fetched");
   }, []);
 
   return (
     <div>
-      <h3>FetchingData</h3>
+      <h3>Fetching Data Fetch</h3>
       <ul>
         {users.map((user) => (
           <li key={user.id}>{user.name}</li>
