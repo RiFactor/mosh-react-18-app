@@ -149,7 +149,6 @@ const ExpenseTracker = () => {
               );
             })}
           </select>
-          {/* QUESTION -- what does htmlFor and input do?? */}
           {errors.category && (
             <p className="text-danger">{errors.category.message}</p>
           )}

@@ -34,7 +34,7 @@ const FormHook = () => {
           Name
         </label>
         <input
-          {...register("name", { required: true, minLength: 2 })} // QUESTION -- arbritray name but tied to where it is placed? tested by renaming
+          {...register("name", { required: true, minLength: 2 })} // basic QUESTION -- arbritray name but tied to where it is placed? tested by renaming, will this also need the id hook
           id="name"
           type="text"
           className="form-control"
@@ -51,7 +51,7 @@ const FormHook = () => {
           Age
         </label>
         <input
-          {...register("age", { required: true })} // QUESTION -- is required a nested obj inside register?
+          {...register("age", { required: true })} // basic QUESTION -- is required a nested obj inside register?
           id="age"
           type="number"
           className="form-control"
@@ -59,7 +59,7 @@ const FormHook = () => {
         {errors.age?.type === "required" && (
           <p className="text-danger">Please provide an age.</p>
         )}
-        {/* // QUESTION -- why does only type need optional chaining and not errors?b/c not checking if errors exists, but checking if name exists?? */}
+        {/* // basic QUESTION -- why does only type need optional chaining and not errors?b/c not checking if errors exists, but checking if name exists?? */}
       </div>
       <button className="btn btn-primary" type="submit">
         Submit

@@ -8,7 +8,7 @@ type IExpense = {
 };
 
 interface IProps {
-  // QUESTION -- why is type = {}; but no '=' for IProps, not Props = {}, just Props {}
+  // basic QUESTION --  why is type = {}; but no '=' for IProps, not Props = {}, just Props {}
   expenses: IExpense[];
   onDelete: (id: number) => void;
 }

@@ -25,7 +25,7 @@ const ControlledForm = () => {
           onChange={(event) => {
             setPerson({ ...person, name: event.target.value });
           }}
-          value={person.name || "" || "person"} // QUESTION -- these are falsy so if I pass || "derek", it will render this b/c those are falsy
+          value={person.name || "" || "person"} // ToDo -- these are falsy so if I pass || "derek", it will render this b/c those are falsy
           id="name"
           type="text"
           className="form-control"

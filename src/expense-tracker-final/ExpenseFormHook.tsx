@@ -11,7 +11,7 @@ const maxLength = 20;
 const schema = z.object({
   description: z
     .string()
-    .nonempty({ message: "Please provide a description." }) // QUESTION should nonempty be used?
+    .nonempty({ message: "Please provide a description." }) // basic QUESTION should nonempty be used?
     .min(minLength, {
       message: `Please enter at least ${minLength} characters.`,
     })
@@ -29,9 +29,9 @@ const schema = z.object({
     }),
   }),
 });
-// .required(); // QUESTION -- want all the fields to be required: zod.dev Docs, make a separate required const
+// .required(); // ToDo -- want all the fields to be required: zod.dev Docs, make a separate required const
 
-type TExpense = z.infer<typeof schema>; // QUESTION -- should it be TExpenseFormData or is this name ok?
+type TExpense = z.infer<typeof schema>; // basic QUESTION -- should it be TExpenseFormData or is this name ok?
 
 interface IProps {
   onSubmit: (expense: TExpense) => void;
