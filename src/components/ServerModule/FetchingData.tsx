@@ -10,6 +10,7 @@ type TUsers = {
 
 const FetchingData = () => {
   const [users, setUsers] = useState<TUsers[]>([]); // NTS: must remember array here
+  const [errors, setErrors] = useState("");
   const isFetchingRef = useRef(false);
 
   useEffect(() => {
@@ -23,8 +24,9 @@ const FetchingData = () => {
       try {
         const data = await getUserData();
         setUsers(data);
-      } catch (error) {
-        console.log("fetching user error", error);
+      } catch (error: any) {
+        console.log("fetching user error", error); // QUESTION -- how do I get an error message from this "[object Response]
+        setErrors(error.message);
       }
       isFetchingRef.current = false; // QUESTION - second render still happening
     }
@@ -34,6 +36,7 @@ const FetchingData = () => {
 
   return (
     <div>
+      {errors && <p className="text-danger">{errors}</p>}
       <h3>Fetching Data Fetch</h3>
       <ul>
         {users.map((user) => (

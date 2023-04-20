@@ -1,4 +1,4 @@
-const url = "https://jsonplaceholder.typicode.com/users";
+const url = "https://jsonplaceholder.typicode.com/susers";
 
 const getUserData = async () => {
   const res = await fetch(url);

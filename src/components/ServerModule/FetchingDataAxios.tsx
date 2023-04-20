@@ -16,7 +16,10 @@ const FetchingDataAxios = () => {
     axios
       .get<TUsers[]>("https://jsonplaceholder.typicode.com/xusers") //incorrect end point to demo error; NTS: must remember array here
       .then((res) => setUsers(res.data))
-      .catch((err) => setErrors(err.message));
+      .catch((error) => {
+        console.log(error);
+        setErrors(error.message);
+      });
   }, []);
 
   return (
