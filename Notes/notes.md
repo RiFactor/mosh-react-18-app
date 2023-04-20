@@ -383,6 +383,38 @@ Developer Mode Strict Mode:
 React renders each component twice, before second render.
 React unmounts (removes component from the screen) hence clean up code executed
 
+### Understanding HTTP Requests
+
+HTTP - Hypertext Transfer Protocol: protocol for transferring data over the internet - poewrs the web
+
+Browser --- Request---> (Web) Server <br/>
+Browser <-- Response ---(Web) Server
+
+HTTP Request / Response Structure:
+
+- Header: Metadata
+- Body: data
+
+Response:
+
+- HTML
+- CSS
+- Other resources
+
+> Dev Tools > Network > (Filter) Fetch / XHR > <br/>
+> Select request (duplication for React Strict Mode)
+
+- Headers
+  - Request URL: endpoint
+  - Request Method: GET /
+  - Status Code
+  - Remote Address: IP address of target web server
+- Response Headers
+- Request Headers
+
+- Preview: data returned from server
+- Response: body of response
+
 </details>
 
 <details>
