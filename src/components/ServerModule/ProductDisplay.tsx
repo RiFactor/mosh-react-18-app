@@ -1,6 +1,5 @@
 import { useState } from "react";
 import ProductList from "./ProductList";
-import EffectCleanUp from "./EffectCleanUp";
 
 const ProductDisplay = () => {
   const [category, setCategory] = useState("");
@@ -16,7 +15,6 @@ const ProductDisplay = () => {
         <option value="Household">Household</option>
       </select>
       <ProductList category={category} />
-      <EffectCleanUp />
     </div>
   );
 };

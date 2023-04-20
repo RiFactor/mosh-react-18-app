@@ -276,14 +276,6 @@ setPerson(...person, address: {...person.address, town: "Chicago"})
 <summary> Building Forms
 </summary>
 
-shorthand: tab to complete; then add id etc.
-_(ignore spaces, auto-save forces this here)_
-
-```typescript
-div.mb - 3 > label.form - label + input[(type = number)].form - control; // > to  nest; + next to
-button.btn.btn - primary; // to add multiple classes
-```
-
 ### Accessing Input Fields
 
 > _Form.tsx_
@@ -319,6 +311,31 @@ Submit handler: fn that receives data in a form
 Cube - yup
 
 value props of input fields always return string so need to convert to desired type
+
+### Unique ID per component instance
+
+If you render multiple forms / fields on the page with the same name from separate components but need a unique id
+
+```typescript
+const id = useId();
+```
+
+basic QUESTION: does register need the id too? (why not)
+
+concatenate id to label's hmtlFor and input's id
+clicking on label will focus the cursor on the corresponding input
+
+```typescript
+<label htmlFor={"description" + id} className="form-label">
+          Description
+        </label>
+        <input
+          {...register("description")}
+          id={"description" + id}
+          type="text"
+          className="form-control"
+        />
+```
 
 </details>
 
@@ -356,13 +373,15 @@ Second argument of useEffect - Dependency Array:
 
 ### Effect Clean Up
 
-Optionally return a function to clean up:
+Fn passed in Effect can optionally return fn for cleaning up that undo what effect was doing:
 
-- Fn passed in Effect can optionally return fn for cleaning up
-- undo what effect was doing
-  connect --> disconnect
-  show modal --> hide modal
-  fetching server data --> abort fetch / ignore result
+- Connect --> Disconnect
+- Show modal --> Hide modal
+- Fetching server data --> Abort fetch / ignore result
+
+Developer Mode Strict Mode:
+React renders each component twice, before second render.
+React unmounts (removes component from the screen) hence clean up code executed
 
 </details>
 

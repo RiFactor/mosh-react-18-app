@@ -111,11 +111,10 @@ const App = () => {
       <ControlledForm />
       <FormHook />
       <ZodForm /> */}
-      <ExpenseView />
+      {/* <ExpenseView />
       <ExpenseDisplay />
-      <ExpenseTracker />
+      <ExpenseTracker /> */}
       <ConnectingToTheBackend />
-      <ProductDisplay />
     </div>
   );
 };

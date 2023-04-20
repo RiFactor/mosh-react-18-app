@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react";
+import EffectCleanUp from "./EffectCleanUp";
+import ProductDisplay from "./ProductDisplay";
 
 const ConnectingToTheBackend = () => {
   const ref = useRef<HTMLInputElement>(null);
@@ -20,6 +22,8 @@ const ConnectingToTheBackend = () => {
       <div>
         <label>First Name</label>
         <input ref={ref} type="text" className="form-control"></input>
+        {/* <ProductDisplay /> */}
+        <EffectCleanUp />
       </div>
     </div>
   );
