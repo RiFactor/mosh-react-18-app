@@ -415,6 +415,38 @@ Response:
 - Preview: data returned from server
 - Response: body of response
 
+### Showing a Loading Indicator
+
+```typescript
+useEffect(() => {
+  const controller = new AbortController();
+  axios
+    .get<TUsers[]>("https://jsonplaceholder.typicode.com/users", {
+      // NTS: must remember array here
+      signal: controller.signal,
+    }) //incorrect end point to demo error;
+    .then((res) => {
+      // callback fn
+      setUsers(res.data);
+      setIsLoading(false); // React applies updates, then rerenders component so order doesn't matter here
+    })
+    .catch((error) => {
+      if (error instanceof CanceledError) return;
+      console.log(error);
+      setErrors(error.message);
+      setIsLoading(false);
+    });
+  // .finally(() => setIsLoading(false)); // QUESTION -- Mosh doesn't know why: doesn't work w/ strict mode on
+  // setIsLoading(false); // can't do this here b/c calling the server is async - isn't blocking so this code will just run before waiting
+
+  return () => controller.abort();
+}, []);
+```
+
+Simulate slow network
+
+> Inspect > Network > Throttling > Slow 3G
+
 </details>
 
 <details>

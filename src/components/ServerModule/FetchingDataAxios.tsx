@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios, { AxiosError, CanceledError } from "axios";
+import { AiOutlineBorder } from "react-icons/ai";
 
 // basic QUESTION -- okay to use type? (Mosh used interface); why does type need = {}, interface only needs {}
 type TUsers = {
@@ -11,19 +12,25 @@ type TUsers = {
 const FetchingDataAxios = () => {
   const [users, setUsers] = useState<TUsers[]>([]); // NTS: must remember array here
   const [errors, setErrors] = useState("");
+  const [isLoading, setIsLoading] = useState(true); // basic QUESTION -- should be it be 'isLoading / setIsLoading' or 'isLoading' 'setLoading' or other?
 
   useEffect(() => {
     const controller = new AbortController();
     axios
       .get<TUsers[]>("https://jsonplaceholder.typicode.com/users", {
         signal: controller.signal,
-      }) //incorrect end point to demo error; NTS: must remember array here
-      .then((res) => setUsers(res.data))
+      })
+      .then((res) => {
+        setUsers(res.data);
+        setIsLoading(false);
+      })
       .catch((error) => {
         if (error instanceof CanceledError) return;
         console.log(error);
         setErrors(error.message);
+        setIsLoading(false);
       });
+    // .finally(() => setIsLoading(false)); // QUESTION -- mosh doesn't know why: doesn't work w/ strict mode on
 
     return () => controller.abort();
   }, []);
@@ -31,6 +38,7 @@ const FetchingDataAxios = () => {
   return (
     <div>
       {errors && <p className="text-danger">{errors}</p>}
+      {isLoading && <div className="spinner-border"></div>}
       <h3>Fetching Data Axios</h3>
       <ul>
         {users.map((user) => (
