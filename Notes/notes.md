@@ -458,11 +458,3 @@ Simulate slow network
 <br/>
 
 ## Techniques
-
-```Typescript
-const {
-    register,
-    handleSubmit,
-    formState: { errors }, // Nested destructuring
-  } = useForm<TExpense>();
-```

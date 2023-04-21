@@ -2,8 +2,9 @@ import { useEffect, useRef } from "react";
 import EffectCleanUp from "./EffectCleanUp";
 import ProductDisplay from "./ProductDisplay";
 import FetchingDataAxios from "./FetchingDataAxios";
-import FetchingData from "./FetchingData";
+import FetchingData from "./FetchingDataPractise";
 import FetchingDataAxiosTryCatch from "./FetchingDataAxiosTryCatch";
+import FetchingDataPractise from "./FetchingDataPractise";
 
 const ConnectingToTheBackend = () => {
   const ref = useRef<HTMLInputElement>(null);
@@ -29,7 +30,7 @@ const ConnectingToTheBackend = () => {
         <EffectCleanUp />
         <FetchingDataAxios />
         <FetchingDataAxiosTryCatch />
-        <FetchingData />
+        <FetchingDataPractise />
       </div>
     </div>
   );

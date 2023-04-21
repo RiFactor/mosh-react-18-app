@@ -8,7 +8,7 @@ type TUsers = {
   // only define properties interested in
 };
 
-const FetchingData = () => {
+const FetchingDataPractise = () => {
   const [users, setUsers] = useState<TUsers[]>([]); // NTS: must remember array here
   const [errors, setErrors] = useState("");
   const isFetchingRef = useRef(false);
@@ -48,4 +48,4 @@ const FetchingData = () => {
   );
 };
 
-export default FetchingData;
+export default FetchingDataPractise;
