@@ -3,6 +3,7 @@ import EffectCleanUp from "./EffectCleanUp";
 import ProductDisplay from "./ProductDisplay";
 import FetchingDataAxios from "./FetchingDataAxios";
 import FetchingData from "./FetchingData";
+import FetchingDataAxiosTryCatch from "./FetchingDataAxiosTryCatch";
 
 const ConnectingToTheBackend = () => {
   const ref = useRef<HTMLInputElement>(null);
@@ -27,6 +28,7 @@ const ConnectingToTheBackend = () => {
         {/* <ProductDisplay /> */}
         <EffectCleanUp />
         <FetchingDataAxios />
+        <FetchingDataAxiosTryCatch />
         <FetchingData />
       </div>
     </div>
