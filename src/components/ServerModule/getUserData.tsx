@@ -1,6 +1,7 @@
 const url = "https://jsonplaceholder.typicode.com/users";
 
 const getUserData = async () => {
+  //QUESTION how I pass signal here to cancel a fetch request, attempted caused a double cancellation
   const res = await fetch(url);
 
   if (res.status !== 200) {

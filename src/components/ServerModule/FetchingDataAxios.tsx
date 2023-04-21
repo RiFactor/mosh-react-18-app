@@ -14,7 +14,6 @@ const FetchingDataAxios = () => {
 
   // useEffect(() => {
   //   const controller = new AbortController();
-
   //   axios
   //     .get<TUsers[]>("https://jsonplaceholder.typicode.com/users", {
   //       signal: controller.signal,
@@ -48,7 +47,6 @@ const FetchingDataAxios = () => {
       }
     };
     fetchUsers();
-
     return () => controller.abort();
   }, []);
 
