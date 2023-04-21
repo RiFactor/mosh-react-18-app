@@ -447,6 +447,14 @@ Simulate slow network
 
 > Inspect > Network > Throttling > Slow 3G
 
+### Deleting (Updating) Data
+
+| Optimistic Update                  | Pessimistic Update             |
+| ---------------------------------- | ------------------------------ |
+| 1. Update the UI                   | 1. Call the Server             |
+| 2. Call the Server                 | 2. Update the UI if successful |
+| Faster UX but must reset if failed | Slower UX                      |
+
 </details>
 
 <details>
@@ -456,5 +464,3 @@ Simulate slow network
 </details>
 
 <br/>
-
-## Techniques

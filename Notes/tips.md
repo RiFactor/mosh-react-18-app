@@ -15,9 +15,20 @@ button.btn.btn - primary; // to add multiple classes
 ### React
 
 ```typescript
-{
-  ("  "); // add white space between elements when JSX compiled
-}
+<ul className="list-group">
+  {users.map((user) => (
+    <li className="list-group-item" key={user.id}>
+      {user.name}
+      {"   "} // to add white space between adjacent elements for when JSX compiled
+      <button
+        className="btn btn-outline-danger"
+        onClick={() => handleDelete(user)}
+      >
+        Delete
+      </button>
+    </li>
+  ))}
+</ul>
 ```
 
 ### TypeScript
