@@ -9,7 +9,9 @@ type TUser = {
   // only define properties interested in
 };
 
-const url = "https://jsonplaceholder.typicode.com/users/"; // MIGHT NEED TRAILING SLASH!!?
+const url = "https://jsonplaceholder.typicode.com/users/"; // basic QUESTION -- is it better to remove trailing slash and requests start with slash?
+
+// putting in incorrect url - error auto loads, on mosh eg - it only loads after doing st: adding / deleting user
 
 const FetchingDataAxios = () => {
   const [users, setUsers] = useState<TUser[]>([]); // NTS: must remember array here
@@ -25,6 +27,24 @@ const FetchingDataAxios = () => {
       setErrors(err.message);
       setUsers(originalUsers);
     });
+  };
+
+  const handleAdd = () => {
+    // QUESTION - clicking add exponentially increases new users on lists, unclear why
+    const newUser = { id: 0, name: "Me" }; // id:0 (user not saved)
+    const originalUsers = [...users];
+
+    setUsers([newUser, ...users]);
+
+    axios
+      .post(url, newUser)
+      .then(({ data: savedUser }) => {
+        setUsers([savedUser, ...users]);
+      })
+      .catch((err) => {
+        setErrors(err.message);
+        setUsers(originalUsers);
+      });
   };
 
   useEffect(() => {
@@ -53,6 +73,9 @@ const FetchingDataAxios = () => {
       {errors && <p className="text-danger">{errors}</p>}
       {isLoading && <div className="spinner-border"></div>}
       <h3>Fetching Data Axios</h3>
+      <button onClick={() => handleAdd()} className="btn btn-primary mb-3">
+        Add User
+      </button>
       <ul className="list-group">
         {users.map((user) => (
           <li

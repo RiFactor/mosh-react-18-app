@@ -27,10 +27,10 @@ const ConnectingToTheBackend = () => {
         <label>First Name</label>
         <input ref={ref} type="text" className="form-control"></input>
         {/* <ProductDisplay /> */}
-        <EffectCleanUp />
+        {/* <EffectCleanUp /> */}
         <FetchingDataAxios />
-        <FetchingDataAxiosTryCatch />
-        <FetchingDataPractise />
+        {/* <FetchingDataAxiosTryCatch />
+        <FetchingDataPractise /> */}
       </div>
     </div>
   );

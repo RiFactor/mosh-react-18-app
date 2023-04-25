@@ -449,11 +449,11 @@ Simulate slow network
 
 ### Deleting (Updating) Data
 
-| Optimistic Update                  | Pessimistic Update             |
-| ---------------------------------- | ------------------------------ |
-| 1. Update the UI                   | 1. Call the Server             |
-| 2. Call the Server                 | 2. Update the UI if successful |
-| Faster UX but must reset if failed | Slower UX                      |
+| Optimistic Update (Assume successful) | Pessimistic Update (assume failure) |
+| ------------------------------------- | ----------------------------------- |
+| 1. Update the UI                      | 1. Call the Server                  |
+| 2. Call the Server                    | 2. Update the UI if successful      |
+| Faster UX but must reset if failed    | Slower UX                           |
 
 </details>
 
