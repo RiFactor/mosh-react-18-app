@@ -12,7 +12,7 @@ const FetchingDataAxios = () => {
   const [isLoading, setIsLoading] = useState(true); // basic QUESTION -- should be it be 'isLoading / setIsLoading' or 'isLoading' 'setLoading' or other?
 
   useEffect(() => {
-    const { request, cancel } = userService.getAllUsers();
+    const { request, cancel } = userService.getAll<TUser>();
     request
       .then((res) => {
         setUsers(res.data);
@@ -37,7 +37,7 @@ const FetchingDataAxios = () => {
     setUsers([newUser, ...users]);
 
     userService
-      .addUser(newUser)
+      .create(newUser)
       .then(({ data: savedUser }) => {
         setUsers([savedUser, ...users]);
       })
@@ -52,7 +52,7 @@ const FetchingDataAxios = () => {
     const updatedUser = { ...user, name: user.name + "!" };
     setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
     // Basic QUESTION -- why didn't Mosh include a fetch method here, should there be
-    userService.updateUser(updatedUser).catch((err) => {
+    userService.update(updatedUser).catch((err) => {
       setError(err.message);
       setUsers([...originalUsers]);
     });
@@ -63,7 +63,7 @@ const FetchingDataAxios = () => {
     const originalUsers = [...users];
 
     setUsers(users.filter((u) => u.id !== user.id));
-    userService.deleteUser(user.id).catch((err) => {
+    userService.delete(user.id).catch((err) => {
       setError(err.message);
       setUsers(originalUsers);
     });
