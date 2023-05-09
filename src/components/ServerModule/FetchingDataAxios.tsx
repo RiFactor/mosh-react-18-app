@@ -1,33 +1,11 @@
-import { useEffect, useState } from "react";
-import { AiOutlineBorder } from "react-icons/ai";
-import { CanceledError } from "servies/api-client";
-import userService, { TUser } from "servies/user-service";
+import userService, { TUser } from "services/user-service";
 
 const url = "https://jsonplaceholder.typicode.com/users/";
 // putting in incorrect url - error auto loads, on mosh eg - it only loads after doing st: adding / deleting user
 
 const FetchingDataAxios = () => {
-  const [users, setUsers] = useState<TUser[]>([]); // NTS: must remember array here
-  const [error, setError] = useState(""); // basic Question -- should this be singular or plural
-  const [isLoading, setIsLoading] = useState(true); // basic QUESTION -- should be it be 'isLoading / setIsLoading' or 'isLoading' 'setLoading' or other?
-
-  useEffect(() => {
-    const { request, cancel } = userService.getAll<TUser>();
-    request
-      .then((res) => {
-        setUsers(res.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        if (error instanceof CanceledError) return;
-        console.log(error);
-        setError(error.message);
-        setIsLoading(false);
-      });
-    // .finally(() => setIsLoading(false)); // QUESTION -- mosh doesn't know why: doesn't work w/ strict mode on
-
-    return () => cancel();
-  }, []);
+  // basic QUESTION important - why is this erroring?
+  const { users, error, isLoading, setUsers, setError } = useUsers();
 
   const handleAdd = () => {
     // QUESTION - clicking 'add' exponentially increases new users on lists, unclear why
@@ -107,3 +85,6 @@ const FetchingDataAxios = () => {
 };
 
 export default FetchingDataAxios;
+function useUsers(): { users: any; error: any; isLoading: any } {
+  throw new Error("Function not implemented.");
+}
