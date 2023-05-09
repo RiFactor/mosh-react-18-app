@@ -28,7 +28,7 @@ const FetchingDataAxios = () => {
   const handleUpdate = (user: TUser) => {
     const originalUsers = [...users];
     const updatedUser = { ...user, name: user.name + "!" };
-    setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
+    setUsers(users.map((u: TUser) => (u.id === user.id ? updatedUser : u)));
     // Basic QUESTION -- why didn't Mosh include a fetch method here, should there be
     userService.update(updatedUser).catch((err) => {
       setError(err.message);
@@ -56,7 +56,7 @@ const FetchingDataAxios = () => {
         Add User
       </button>
       <ul className="list-group">
-        {users.map((user) => (
+        {users.map((user: TUser) => (
           <li
             className="list-group-item d-flex justify-content-between"
             key={user.id}
