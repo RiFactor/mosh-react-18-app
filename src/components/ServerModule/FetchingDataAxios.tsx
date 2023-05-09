@@ -18,6 +18,16 @@ const FetchingDataAxios = () => {
   const [errors, setErrors] = useState("");
   const [isLoading, setIsLoading] = useState(true); // basic QUESTION -- should be it be 'isLoading / setIsLoading' or 'isLoading' 'setLoading' or other?
 
+  const handleUpdate = (user: TUser) => {
+    const originalUsers = [...users];
+    const updatedUser = { ...user, name: user.name + "!" };
+    setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
+    // Basic QUESTION -- why didn't Mosh include a fetch method here, should there be
+    axios.patch(url + user.id, updatedUser).catch((err) => {
+      setUsers([...originalUsers]);
+    });
+  };
+
   const handleDelete = (user: TUser) => {
     // basic QUESTION -- is 'handle' a good prefix for functions?
     const originalUsers = [...users];
@@ -30,7 +40,7 @@ const FetchingDataAxios = () => {
   };
 
   const handleAdd = () => {
-    // QUESTION - clicking add exponentially increases new users on lists, unclear why
+    // QUESTION - clicking 'add' exponentially increases new users on lists, unclear why
     const newUser = { id: 0, name: "Me" }; // id:0 (user not saved)
     const originalUsers = [...users];
 
@@ -38,6 +48,7 @@ const FetchingDataAxios = () => {
 
     axios
       .post(url, newUser)
+      // res
       .then(({ data: savedUser }) => {
         setUsers([savedUser, ...users]);
       })
@@ -83,12 +94,20 @@ const FetchingDataAxios = () => {
             key={user.id}
           >
             {user.name}
-            <button
-              className="btn btn-outline-danger"
-              onClick={() => handleDelete(user)}
-            >
-              Delete
-            </button>
+            <div>
+              <button
+                className="btn btn-outline-primary mx-2"
+                onClick={() => handleUpdate(user)}
+              >
+                Update
+              </button>
+              <button
+                className="btn btn-outline-danger"
+                onClick={() => handleDelete(user)}
+              >
+                Delete
+              </button>
+            </div>
           </li>
           // basic QUESTION: TS prevents display of undefined properties
         ))}
