@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios, { AxiosError, CanceledError } from "axios";
 import { AiOutlineBorder } from "react-icons/ai";
+import apiClient, { CanceledError } from "servies/api-client";
 
 // basic QUESTION -- okay to use type? (Mosh used interface); why does type need = {}, interface only needs {}
 type TUser = {
@@ -9,8 +9,7 @@ type TUser = {
   // only define properties interested in
 };
 
-const url = "https://jsonplaceholder.typicode.com/users/"; // basic QUESTION -- is it better to remove trailing slash and requests start with slash?
-
+const url = "https://jsonplaceholder.typicode.com/users/";
 // putting in incorrect url - error auto loads, on mosh eg - it only loads after doing st: adding / deleting user
 
 const FetchingDataAxios = () => {
@@ -18,50 +17,10 @@ const FetchingDataAxios = () => {
   const [errors, setErrors] = useState("");
   const [isLoading, setIsLoading] = useState(true); // basic QUESTION -- should be it be 'isLoading / setIsLoading' or 'isLoading' 'setLoading' or other?
 
-  const handleUpdate = (user: TUser) => {
-    const originalUsers = [...users];
-    const updatedUser = { ...user, name: user.name + "!" };
-    setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
-    // Basic QUESTION -- why didn't Mosh include a fetch method here, should there be
-    axios.patch(url + user.id, updatedUser).catch((err) => {
-      setUsers([...originalUsers]);
-    });
-  };
-
-  const handleDelete = (user: TUser) => {
-    // basic QUESTION -- is 'handle' a good prefix for functions?
-    const originalUsers = [...users];
-
-    setUsers(users.filter((u) => u.id !== user.id));
-    axios.delete(`${url}${user.id}`).catch((err) => {
-      setErrors(err.message);
-      setUsers(originalUsers);
-    });
-  };
-
-  const handleAdd = () => {
-    // QUESTION - clicking 'add' exponentially increases new users on lists, unclear why
-    const newUser = { id: 0, name: "Me" }; // id:0 (user not saved)
-    const originalUsers = [...users];
-
-    setUsers([newUser, ...users]);
-
-    axios
-      .post(url, newUser)
-      // res
-      .then(({ data: savedUser }) => {
-        setUsers([savedUser, ...users]);
-      })
-      .catch((err) => {
-        setErrors(err.message);
-        setUsers(originalUsers);
-      });
-  };
-
   useEffect(() => {
     const controller = new AbortController();
-    axios
-      .get<TUser[]>(url, {
+    apiClient // where is this name defined
+      .get<TUser[]>("/users", {
         signal: controller.signal,
       })
       .then((res) => {
@@ -78,6 +37,46 @@ const FetchingDataAxios = () => {
 
     return () => controller.abort();
   }, []);
+
+  const handleDelete = (user: TUser) => {
+    // basic QUESTION -- is 'handle' a good prefix for functions?
+    const originalUsers = [...users];
+
+    setUsers(users.filter((u) => u.id !== user.id));
+    apiClient.delete("/users/" + user.id).catch((err) => {
+      setErrors(err.message);
+      setUsers(originalUsers);
+    });
+  };
+
+  const handleUpdate = (user: TUser) => {
+    const originalUsers = [...users];
+    const updatedUser = { ...user, name: user.name + "!" };
+    setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
+    // Basic QUESTION -- why didn't Mosh include a fetch method here, should there be
+    apiClient.patch("/users/" + user.id, updatedUser).catch((err) => {
+      setUsers([...originalUsers]);
+    });
+  };
+
+  const handleAdd = () => {
+    // QUESTION - clicking 'add' exponentially increases new users on lists, unclear why
+    const newUser = { id: 0, name: "Me" }; // id:0 (user not saved)
+    const originalUsers = [...users];
+
+    setUsers([newUser, ...users]);
+
+    apiClient
+      .post("/users/", newUser)
+      // res
+      .then(({ data: savedUser }) => {
+        setUsers([savedUser, ...users]);
+      })
+      .catch((err) => {
+        setErrors(err.message);
+        setUsers(originalUsers);
+      });
+  };
 
   return (
     <div>
