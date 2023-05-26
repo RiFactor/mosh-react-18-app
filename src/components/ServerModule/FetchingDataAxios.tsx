@@ -1,3 +1,4 @@
+import useUsers from "hooks/useUsers";
 import userService, { TUser } from "services/user-service";
 
 const url = "https://jsonplaceholder.typicode.com/users/";
@@ -85,6 +86,3 @@ const FetchingDataAxios = () => {
 };
 
 export default FetchingDataAxios;
-function useUsers(): { users: any; error: any; isLoading: any } {
-  throw new Error("Function not implemented.");
-}
