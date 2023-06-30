@@ -4,6 +4,148 @@
 
 <br/>
 
+### Fundamentals w/ Oe
+
+30-06-23
+
+<details>
+<summary>Callback function & Synchronous vs asynchronous</summary>
+Never at the same time in JS: 
+<br/> [not sure why markdown isn't working for bulletpoints] <br/>
+- Synchronous - in order
+<br/>
+-Asynchronous - no order (but then await makes it in order)
+<br/>
+<br/>
+Highlighted fn is a callback (usually anon) before promises:
+<br/>
+"A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action."
+
+![Highlighted fn is a callback (usually anon)](callbackfn2.png)
+![hrm](callbackfn.png)
+
+### Promise
+
+Try-catch is the new version of .then() .catch();
+<br/>
+use try-catch it then gets transpiled down to nested .then()
+
+Callback hell:
+Where a promise might then lead to another promise
+Nested:
+
+```typescript
+.then( … .then() .catch())
+```
+
+Therefore had:
+
+Async await (synctactic sugar for .then())
+![Async await (synctactic sugar for .then())](async-await.png)
+
+(makes it look like it’s done in order)
+
+forces it to wait for the apiCall()
+
+equivalent but neater on top (better to have more lines)
+![equivalent but neater on top (better to have more lines)](asyncVsThen.png)
+
+![Alt text](asyncVsThen2.png)
+
+await ~= .then()
+
+saves nesting anon functions in .then()
+
+async ~= promise
+
+**_ async await is a neater way of writing nested .then() and avoids dealing w/ callback hell _**
+
+it is async and reads like it is synchronous
+
+everything was synchronous: global JS file —> now appears to be async
+weren’t in the past allowed to just make init await
+
+![await init - now permissible](async.png)
+![Alt text](async2.png)
+return is a promise
+![return is a promise](async3.png)
+throw = reject
+
+</details>
+
+<details>
+<summary><> </> shorthand for `< React.Fragment >`</summary>
+It is just shorthand for React.Fragment (create)
+It returns the children which Oe worked out is an array therefore it is nested in one item (a single array).
+
+![asdfadf](react-fragment.png)
+
+JSX is syntactic sugar for fns ()
+
+```typescript
+createElement("div") // type, props {}. children
+//equivalent to
+<div> </div>
+```
+
+![Alt text](fragment.png)
+![Alt text](fragment2.png)
+
+![Can’t just map children.map directly](fragment3.png)
+Can’t just map children.map directly
+![Alt text](fragment-div.png)
+
+</details>
+
+<details>
+<summary>Curry / Generator fns</summary>
+Curry [technique] (generator functional ) function: return function that isn’t declared
+Functional programming - generator function
+![Alt text](curry.png)
+![Alt text](curry2.png)
+</details>
+
+<details>
+<summary>What is a hook?</summary>
+Fns that have access to the React ‘ecosystem’ can access React use hooks e.g.:
+
+```typescript
+useEffect();
+useState();
+```
+
+They're diff from .ts fns which can't (they technically can but React doesn't want you to)
+
+</details>
+
+<details>
+<summary>() => {} vs () => ()</summary>
+
+```typescript
+() => (
+  // return everything in this; shorthand for return keyword
+)
+```
+
+```typescript
+() => []; // will return an array
+```
+
+```typescript
+() => ({ 1: "hi", 2: "hello" }); // will wrap an obj
+```
+
+```typescript
+() => {
+  const a = b * 2;
+  return a;
+}; // define functions here then require the 'return' keyword to explicitly return something
+```
+
+</details>
+
+<br/>
+
 <details>
 
 <summary> Terminology
